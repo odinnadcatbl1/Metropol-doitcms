@@ -1,0 +1,110 @@
+
+<!--INTRO-->
+<div class="intro js-parallax">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7">
+                <div class="intro__title">
+                    Добро пожаловать <br>
+                    в магазины алкоголя <h1>Метрополь в Казани</h1> 
+                </div>
+                
+                <div class="intro__subtitle">
+                    Купить настоящий алкоголь в Казани по низкой цене предлагает сеть магазинов Метрополь. У нас большой ассортимент алкогольной продукции — водка, вино, коньяк, виски, портвейн, текила, ром и конечно же херес. Наши магазины алкоголя — это место, где к спиртным напиткам относятся, как к искусству! Все предлагаемые товары от проверенных производителей, отличаются высоким качеством, соответствующим всем мировым стандартам, и являются на 100% оригинальным продуктом.
+                </div>
+
+                <div class="intro__btn__box">
+                    <a class="intro__btn" href="/catalog-main.html">
+                        <div class="intro__btn__text">Перейти к каталогу</div>
+                        <div class="intro__btn__icon">
+                        <img src="/images/icons/arrow-right.svg" alt="" class="arrow__right js-svg-img">
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> <!-- ./intro -->
+
+<foreach Catalog->where('catalog_id = 0')>
+<!--CATALOG-->
+<div class="catalog">
+    <div class="container">
+        <div class="catalog__title">                   
+            <a href="#" class="catalog__link" >
+                <div class="catalog__name">{.title}</div>
+                <div class="catalog__num">(711)</div> 
+                {{edit}}{{delete}}{{add 'products', 'catalog_id' => d()->this->id}}{{sort_icon 'products', 'catalog_id' => d()->this->id}}
+            </a>    
+        </div> <!--./catalog-title-->
+
+        <div class="js-catalog__slider catalog__slider">
+            <foreach Product->where('catalog_id = ?', d()->this->id)>
+                <div class="catalog__item">
+                    <div class="card__options">
+                        <div class="card__option">Водка</div>
+                        <div class="card__option">500мл</div>
+                    </div>
+
+                    <div class="card__image">
+                        <a href="#" class="image__link"><img src="{{preview d()->this->image, '175', '225'}}" alt=""></a>
+                    </div>
+
+                    <div class="card__describe js-descr-height js-descr-height">
+                        <a href="#" class="describe__link">{.title}</a>
+                    </div>
+                    <div class="price-button">
+                        <div class="card__price">
+                            <div class="price__num green">{.price}</div>
+                            <div class="price__value">руб.</div>
+                        </div>
+
+                        <div class="card__button-box">
+                            <a class="card__button btn--green">Подробнее</a>
+                        </div>
+                    </div>
+                </div> <!-- ./catalog__item--> 
+            </foreach>               
+        </div> <!--./catalog__slider-->
+    </div> <!--./container-->
+</div> <!--./catalog-->
+</foreach>
+
+<!--PROMOTIONS-->
+
+<div class="promotions">
+    <div class="container">
+        <div class="title">
+            Актуальные акции{{add 'promotions', 'promotion_id' => 0}}{{sort_icon 'promotions', 'promotion_id' => 0}}
+        </div>
+        
+        <div class="promotions__inner">
+            <div class="row">
+                <foreach Promotion>
+                    <div class="col-md-6">
+                        <div class="promotions__item"<?if(iam()):?> style="position: relative;"<?endif;?>><?if(iam()):?><span style="position: absolute; right: 30px; top: 10px;">{{edit}}{{delete}}</span><?endif;?>
+                            <div class="promotions__img"><img src="{{preview d()->this->image, '530', '220'}}" alt=""></div>
+                            <div class="promotions__subtitle">{.title}</div>
+                            <div class="promotions__text">
+                                {.text}
+                            </div>
+                            <div class="promotions__button-box">
+                                <a href="#" class="promotions__button">Подробнее</a>
+                            </div>
+                        </div>
+                    </div>
+                </foreach>  
+            </div>
+        </div>
+    </div>
+</div> <!--./promotions-->
+
+<!--YANDEX_MAP-->
+
+<div class="map-box">
+        <div class="title">Адреса наших магазинов</div>
+        
+        <div id="map"></div>
+    
+</div>
+

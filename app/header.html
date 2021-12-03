@@ -1,0 +1,89 @@
+<header class="header jsHeader" <?if(iam()):?> style="margin-top: 20px"<?endif;?>>
+    <div class="container">
+        <div class="header__top">
+
+            <div class="xs-menu js-xs-menu">
+                <div class="burger__logo">
+                    <a href="/index.html"><img src="/images/metropol-logo.svg" alt="" class="metropol__logo js-svg-img"></a>
+                </div>
+                <div class="search__div js-search__div">
+                    <img src="/images/icons/search-icon.svg" alt="" class="search__div-icon js-svg-img">
+                    <img src="/images/icons/search-close.svg" alt="" class="search__close-icon js-svg-img">
+                </div>
+                <div class="burger js-burger">
+                    <span class="burger__item">Menu</span>
+                </div>       
+            </div> <!--/.xs-menu-->
+
+            <div class="md-menu md-menu-index js-md-menu">
+                <div class="row">
+                    <div class="col-md-8 col-6">
+                        <div class="header__nav"<?if(iam()):?> style="position: relative;"<?endif;?>><?if(iam()):?><span style="position: absolute; left: 0px; top: 20px;">{{add 'catalogs', 'catalog_id' => 0}}{{sort_icon 'pages', 'catalog_id' => 0}}</span><?endif;?>                    
+                            <nav class="nav">
+                                <foreach Catalog->where('catalog_id = 0')>
+                                <div class="nav__link js-nav__link"<?if(iam()):?> style="position: relative;"<?endif;?>><?if(iam()):?><span style="position: absolute; right: 30px; top: 10px;">{{edit}}{{delete}}</span><?endif;?>
+                                    <a class="header__links" href="{.link}">{.title}</a>
+                                </div>
+                                </foreach>
+                            </nav>
+
+                        </div>
+                    </div>        
+                        
+                    <div class="col-md-4 col-6"> 
+                        <div class="header__info"<?if(iam()):?> style="position: relative;"<?endif;?>><?if(iam()):?><span style="position: absolute; left: 30px; top: 0px;">{{add 'pages', 'is_mainmenu' => 1}}{{sort_icon 'pages', 'is_mainmenu' => 1}}</span><?endif;?>
+                            <nav class="nav">
+                                <foreach Page->where('is_mainmenu = 1')>
+                                    <div class="nav__link"<?if(iam()):?> style="position: relative;"<?endif;?>><?if(iam()):?><span style="position: absolute; left: -30px">{{edit}}{{delete}}</span><?endif;?>
+                                        <a class="header__links" href="{.link}">{.title}</a>
+                                    </div>
+                                </foreach>
+
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div> <!--/.md-menu-->
+            
+            
+        </div> <!--.header__top-->
+    
+
+        <div class="row"> 
+            <div class="col">
+                <div class="header__bottom">
+                    <div class="header__logo">
+                        <a href="/index.html"><img src="/images/metropol-logo.svg" alt="" class="metropol__logo"></a>
+                    </div>
+                    
+                    <form class="search__form js-search__form">
+                        <input class="search__txt" type="search" placeholder="Например: Водка холодная..">
+                        <button class="search__button">
+                            <img class="search__icon js-svg-img" src="/images/icons/search-icon.svg" alt="">
+                        </button>   
+                    </form>
+                    
+                    <div class="header__mail">
+                        <a class="contacts" href = "mailto:...">
+                            <img class="info__icons js-svg-img" src="/images/icons/mail-icon.svg" alt="">
+                            <div class=contacts__text>754467@mail.ru</div>
+                        </a>
+                    </div>
+
+                    <div class="header__phone">
+                        <a class="contacts" href = "tel:...">
+                            <img class="info__icons js-svg-img" src="/images/icons/phone-icon.svg" alt="">
+                            <div class=contacts__text>+79897025481</div>
+                        </a>
+                    </div>                            
+                    <div class="call">
+                        <a href="#" class="call__link">Заказать звонок</a>
+                    </div>
+                </div> <!--.header__bottom-->
+            </div>
+        </div> <!--.header__bottom row-->
+    </div>
+
+
+
+</header>
