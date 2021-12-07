@@ -26,44 +26,53 @@
     </div>
 </div> <!-- ./intro -->
 
-<foreach Catalog->where('catalog_id = 0')>
-<!--CATALOG-->
+<?
+//ne - not empty (Не пустой)
+//is_empty - empty (пустой)
+?>
+
+<?if(d()->Product->where('is_maincatalog = 1')->ne):?>
 <div class="catalog">
     <div class="container">
-        <div class="catalog__title">                   
+        <div class="catalog__title">
+                               
             <a href="#" class="catalog__link" >
-                <div class="catalog__name">{.title}</div>
+                <div class="catalog__name">Каталог</div>
                 <div class="catalog__num">(711)</div> 
-                {{edit}}{{delete}}{{add 'products', 'catalog_id' => d()->this->id}}{{sort_icon 'products', 'catalog_id' => d()->this->id}}
+                
             </a>    
         </div> <!--./catalog-title-->
 
         <div class="js-catalog__slider catalog__slider">
+      
+            <foreach Product->where('is_maincatalog = 1')>
+                <?
+                d()->green_col = true;
+                ?>
+                {{one_product}}
+            </foreach>               
+        </div> <!--./catalog__slider-->
+    </div> <!--./container-->
+</div> <!--./catalog-->
+<?endif;?>
+
+<foreach Catalog->where('catalog_id = 0')>
+<!--CATALOG-->
+<div class="catalog">
+    <div class="container">{{edit}}{{delete}}{{add 'products', 'catalog_id' => d()->this->id}}{{sort_icon 'products', 'catalog_id' => d()->this->id}}
+        <div class="catalog__title">
+                               
+            <a href="#" class="catalog__link" >
+                <div class="catalog__name">{.title}</div>
+                <div class="catalog__num">(711)</div> 
+                
+            </a>    
+        </div> <!--./catalog-title-->
+
+        <div class="js-catalog__slider catalog__slider">
+         
             <foreach Product->where('catalog_id = ?', d()->this->id)>
-                <div class="catalog__item">
-                    <div class="card__options">
-                        <div class="card__option">Водка</div>
-                        <div class="card__option">500мл</div>
-                    </div>
-
-                    <div class="card__image">
-                        <a href="#" class="image__link"><img src="{{preview d()->this->image, '175', '225'}}" alt=""></a>
-                    </div>
-
-                    <div class="card__describe js-descr-height js-descr-height">
-                        <a href="#" class="describe__link">{.title}</a>
-                    </div>
-                    <div class="price-button">
-                        <div class="card__price">
-                            <div class="price__num green">{.price}</div>
-                            <div class="price__value">руб.</div>
-                        </div>
-
-                        <div class="card__button-box">
-                            <a class="card__button btn--green">Подробнее</a>
-                        </div>
-                    </div>
-                </div> <!-- ./catalog__item--> 
+                {{one_product}}
             </foreach>               
         </div> <!--./catalog__slider-->
     </div> <!--./container-->
@@ -82,7 +91,7 @@
             <div class="row">
                 <foreach Promotion>
                     <div class="col-md-6">
-                        <div class="promotions__item"<?if(iam()):?> style="position: relative;"<?endif;?>><?if(iam()):?><span style="position: absolute; right: 30px; top: 10px;">{{edit}}{{delete}}</span><?endif;?>
+                        <div class="promotions__item"<?if(iam()):?> style="position: relative;"<?endif;?>><?if(iam()):?><span style="position: absolute; right: 10px; top: 0px;">{{edit}}{{delete}}</span><?endif;?>
                             <div class="promotions__img"><img src="{{preview d()->this->image, '530', '220'}}" alt=""></div>
                             <div class="promotions__subtitle">{.title}</div>
                             <div class="promotions__text">

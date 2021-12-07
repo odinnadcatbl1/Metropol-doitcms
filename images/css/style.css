@@ -141,6 +141,7 @@ h1 {
 
 .header__links {
     color: #fff;
+
 }
 
 .nav__link:first-child {
@@ -182,6 +183,7 @@ h1 {
 .menu__link {
     color: #fff;
     margin-right: -10px;
+    white-space: nowrap;
 }
 
 .nav__img {
@@ -1822,6 +1824,7 @@ input[type="number"] {
 
 .goods {
     padding-bottom: 40px;
+    margin-top: 20px;
 }
 
 .goods__item {

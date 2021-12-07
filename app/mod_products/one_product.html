@@ -1,0 +1,30 @@
+<?
+d()->parent_catalog = d()->Catalog->where('id = ?', d()->this->catalog_id);
+?>
+<div class="catalog__item">
+    <div class="card__options" style="position: relative">
+        <div class="card__option">{parent_catalog.title}</div>
+        <div class="card__option">{capacity}мл</div>
+        <span style="position: absolute;right: 0; z-index:1000;">{{edit}}{{delete}}</span>
+    </div>
+
+    <div class="card__image">
+        <a href="#" class="image__link"><img src="{{preview d()->this->image, '175', '225'}}" alt=""></a>
+    </div>
+
+    <div class="card__describe js-descr-height js-descr-height">
+        <a href="#" class="describe__link">{.title}</a>
+    </div>
+    <div class="price-button">
+        <div class="card__price">
+            <div class="price__num <?if(d()->green_col):?> green<?endif;?>">{.price}</div>
+            <div class="price__value">руб.</div>
+        </div>
+
+        <div class="card__button-box">
+            <a href="#" class="card__button <?if(d()->green_col):?> btn--green<?endif;?>">Подробнее</a>
+        </div>
+    </div>
+</div> <!-- ./catalog__item--> 
+
+<?d()->green_col = false;?>

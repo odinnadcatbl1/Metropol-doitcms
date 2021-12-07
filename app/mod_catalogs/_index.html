@@ -1,0 +1,34 @@
+<div class="container">
+	<!--breadcrumb-->
+	<div class="breadcrumb">           
+			<nav aria-label="Breadcrumb" class="breadcrumb-box">
+				<ul class="breadcrumb__list">
+					<li><a href="/index.html">Главная</a></li>
+					<li><span aria-current="page">Каталог товаров</span></li>
+				</ul>
+			</nav>
+	</div> <!--./breadcrumb-->
+	<div class="catalog__title--catalog">
+		<h1><?if(d()->this->h1 != ""):?>{.h1}<? else: ?>{.title}<?endif;?> {{edit}}{{add 'catalogs', 'catalog_id = 0'}}</h1>
+	</div>
+	<?if(d()->this->describe != ""):?> 
+		<div class="catalog__subtitle--catalog">
+			{.describe}
+		</div>
+	<?endif;?>
+	<div class="goods">
+		<div class="row">
+			<foreach Catalog->where('catalog_id = 0')>
+				<div class="col-md-3 col-6" <?if(iam()):?> style="position: relative;"<?endif;?>><?if(iam()):?><span style="position: absolute; right: 20px; top: 0px;">{{edit}}{{delete}}</span><?endif;?>
+					<a href="/catalogs/{.url}" class="goods__item">
+						<div class="goods__title">
+							{.title}
+						</div>
+						<div class="goods__link">Перейти</div>
+					</a> <!--/.goods_item-->
+				</div> <!--/.col-md3-->	
+			</foreach>	 
+		</div> <!--/.row-->
+	</div> <!--/.goods-->
+				
+</div> <!--container-->
