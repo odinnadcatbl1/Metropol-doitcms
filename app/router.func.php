@@ -9,7 +9,6 @@ route('/catalogs/index', 'catalogs#index');
 route('/catalogs/', 'catalogs#show');
 
 
-
 //route('/news/index', 'content', 'news#index');
 //route('/news/index', 'news#index');
 //зарегистрировать контроллер newscontroller по адресу /news/

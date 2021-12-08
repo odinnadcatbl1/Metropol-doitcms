@@ -5,14 +5,14 @@ d()->parent_catalog = d()->Catalog->where('id = ?', d()->this->catalog_id);
     <div class="card__options" style="position: relative">
         <div class="card__option">{parent_catalog.title}</div>
         <div class="card__option">{capacity}мл</div>
-        <span style="position: absolute;right: 0; z-index:1000;">{{edit}}{{delete}}</span>
+        <?if(iam()):?><span style="position: absolute;right: 0; z-index:1000;">{{edit}}{{delete}}</span><?endif;?>
     </div>
 
     <div class="card__image">
-        <a href="#" class="image__link"><img src="{{preview d()->this->image, '175', '225'}}" alt=""></a>
+        <a href="/products/{.url}" class="image__link"><img src="{{preview d()->this->image, '175', '225'}}" alt=""></a>
     </div>
 
-    <div class="card__describe js-descr-height js-descr-height">
+    <div class="card__describe js-descr-height">
         <a href="#" class="describe__link">{.title}</a>
     </div>
     <div class="price-button">

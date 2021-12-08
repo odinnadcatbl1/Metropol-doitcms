@@ -1,0 +1,25 @@
+<?
+$bread_count = count(d()->breads);
+if ($bread_count > 0) :?>
+    <div class="breadcrumb">           
+        <nav aria-label="Breadcrumb" class="breadcrumb-box">
+            <ul class="breadcrumb__list">
+                <?$i = 0;?>
+                <?foreach(d()->breads as $v){?>
+                <?$i++;?>
+                <li>
+                    <?if($i < $bread_count):?>
+                        <a href="<?=$v['link'];?>">
+                            <?=$v['title'];?>
+                        </a>
+                    <?else:?>
+                        <span aria-current="page">
+                            <?=$v['title'];?>
+                        </span>
+                    <?endif;?>
+                </li>
+                <?}?>
+            </ul>
+        </nav>
+    </div>
+<?endif;?>

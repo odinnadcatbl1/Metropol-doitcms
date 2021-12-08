@@ -21,7 +21,7 @@
                         <div class="header__nav <?if(url()!="index"):?>header__nav--catalog<?endif;?>"<?if(iam()):?> style="position: relative;"<?endif;?>><?if(iam()):?><span style="position: absolute; left: -40px; top: 20px;">{{add 'catalogs', 'catalog_id' => 0}}{{sort_icon 'catalogs', 'catalog_id' => 0}}</span><?endif;?>                    
                             <nav class="nav">
                                 <foreach Catalog->where('catalog_id = 0')>
-                                    <div class="nav__link js-nav__link menu__link <?if(url()!="index"):?>nav__link--catalog<?endif;?>"<?if(iam()):?> style="position: relative;"<?endif;?>><?if(iam()):?><span style="position: absolute; top: 10px; z-index: 25; white-space: nowrap;">{{edit}}{{delete}}{{add 'catalogs', 'catalog_id' => d()->this->id}}</span><?endif;?>
+                                    <div class="nav__link js-nav__link menu__link <?if(url()!="index"):?>nav__link--catalog<?endif;?>"<?if(iam()):?> style="position: relative;"<?endif;?>><?if(iam()):?><span style="position: absolute; top: 10px; z-index: 25; white-space: nowrap;">{{edit}}{{delete}}</span><?endif;?>
                                         <a class="header__links <?if(url()!="index"):?>header__links--catalog<?endif;?>" href="/catalogs/{.url}">{.title}<?if(d()->Catalog->where('catalog_id = ?', d()->this->id)->ne):?><img class="js-nav__img nav__img js-svg-img" src="<?if(url()!="index"):?>/images/icons/arrow-down-catalog-nav.svg<?else:?>/images/icons/arrow-down.svg<?endif;?>" alt=""><?endif;?></a>
                                         <?if(d()->Catalog->where('catalog_id = ?', d()->this->id)->ne):?>
                                             <div class="nav__sub-box js-nav__sub-box">
