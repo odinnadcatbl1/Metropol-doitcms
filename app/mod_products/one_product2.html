@@ -9,11 +9,11 @@ d()->parent_catalog = d()->Catalog->where('id = ?', d()->this->catalog_id);
     </div>
 
     <div class="card__image--catalog">
-        <a href="#" class="image__link"><img src="{{preview d()->this->image, '180', '230'}}" alt=""></a>
+        <a href="/products/{.url}" class="image__link"><img src="{{preview d()->this->image, '180', '230'}}" alt=""></a>
     </div>
     
     <div class="card__describe--catalog js-descr-height">
-        <a href="#" class="describe__link">{.title}</a>
+        <a href="/products/{.url}" class="describe__link">{.title}</a>
     </div>
     <div class="price-button--catalog">
         <div class="card__price--catalog">
@@ -22,7 +22,7 @@ d()->parent_catalog = d()->Catalog->where('id = ?', d()->this->catalog_id);
         </div>
 
         <div class="card__button-box--catalog">
-            <a class="card__button--catalog">Подробнее</a>
+            <a href="/products/{.url}" class="card__button--catalog">Подробнее</a>
         </div>
     </div>
 </div> <!-- ./catalog__item--> 

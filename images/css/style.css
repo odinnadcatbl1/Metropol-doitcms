@@ -2000,6 +2000,7 @@ input[type="number"] {
     font-weight: 400;
     color: #666666;
     margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 
@@ -2008,6 +2009,7 @@ input[type="number"] {
 .tabs{
     margin-top: 60px;
 	display: inline-block;
+    width: 100%;
 }
 
 .tabs__items{

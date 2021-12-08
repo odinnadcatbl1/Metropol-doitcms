@@ -1,0 +1,379 @@
+<?
+d()->parent_catalog = d()->Catalog->where('id = ?', d()->this->catalog_id);
+?>
+<div class="container">
+    {{breads}}
+    <div class="product">
+        <div class="product__info">
+            <div class="row">
+                <div class="col-lg-8 col-md-6">
+                    <div class="product__image-box">
+                        <a href="/images/viski-card.jpg" data-fancybox class="fancybox-img"><img class="product__image" src="/images/viski-card.jpg" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="product__describe">
+                        <div class="product__title"><h1>{.title}</h1></div>
+                        <div class="product__price">
+                            {.price}
+                            <div class="price__valuta">руб.</div>
+                        </div>
+                        <div class="product__image-box-hidden">
+                            <a href="/images/viski-card.jpg" data-fancybox class="fancybox-img"><img class="product__image" src="/images/viski-card.jpg" alt=""></a>
+                        </div>
+                        <div class="describe__title">Выбор литража:</div>
+                        <div class="product__capacity">
+                            <a href="#" class="capacity disabled">0,5л</a>
+                            <a href="#" class="capacity active">1л</a>
+                            <a href="#" class="capacity">1,5л</a>
+                        </div>
+                        <div class="describe__title">Категория:</div>
+                        <div class="describe__option">{parent_catalog.title}</div>
+                        <div class="describe__title">Метки:</div>
+                        <div class="describe__option">Ирландия</div>
+                        <div class="describe__title">Наличие в магазинах:</div>
+                        <div class="intro__btn__box--catalog">
+                            <a class="intro__btn intro__btn--catalog js-modal__open" href="#">
+                                <div class="intro__btn__text">Адреса магазинов</div>
+                                <div class="intro__btn__icon">
+                                <img src="/images/icons/arrow-right.svg" alt="" class="arrow__right js-svg-img">
+                                </div>
+                            </a>
+                            <div class="modal__shops js-modal__shops">
+                                <div class="modal__close" data-izimodal-close=""><img src="/images/icons/filter-close.svg" alt=""></div>
+                                <div class="modal__window js-modal__window">
+                                    <div class="modal__title">Магазины</div>
+                                    <div class="describe__title">Отображение:</div>
+                                    <div class="modal__inputs">
+                                        <div class="modal__btns js-modal__btns">                                        
+                                            <div class="modal__tab-btn js-modal__tab-btn">Списком</div>
+                                            <div class="modal__tab-btn js-modal__tab-btn js-modal__map-btn">Карта</div>
+                                        </div>
+                                        <div class="modal__search js-modal__search">
+                                            <form class="modal__search-form">
+                                                <input class="modal__search-input js-modal__search-input" type="text" placeholder="Введите адрес">
+                                            </form>
+                                        </div>            
+                                    </div>
+                                    <div class="shops js-modal__content">
+                                        <div class="shop">
+                                            <div class="shop__address">ул. Комсомольская, 10</div>
+                                            <div class="shop__time">пн-вс 9:00 - 22:00</div>
+                                            <div class="shop__count">658 шт.</div>
+                                        </div>
+                                        <div class="shop">
+                                            <div class="shop__address">ул. 250 лет Челябинска, 10</div>
+                                            <div class="shop__time">пн-вс 9:00 - 22:00</div>
+                                            <div class="shop__count">658 шт.</div>
+                                        </div>
+                                        <div class="shop">
+                                            <div class="shop__address">ул. Пионерская, 10</div>
+                                            <div class="shop__time">пн-вс 9:00 - 22:00</div>
+                                            <div class="shop__count">658 шт.</div>
+                                        </div>
+                                        <div class="shop">
+                                            <div class="shop__address">ул. 250 лет Челябинска, 10</div>
+                                            <div class="shop__time">пн-вс 9:00 - 22:00</div>
+                                            <div class="shop__count">658 шт.</div>
+                                        </div>
+                                        <div class="shop">
+                                            <div class="shop__address">ул. 250 лет Челябинска, 10</div>
+                                            <div class="shop__time">пн-вс 9:00 - 22:00</div>
+                                            <div class="shop__count">658 шт.</div>
+                                        </div>
+                                        <div class="shop">
+                                            <div class="shop__address">ул. 250 лет Челябинска, 10</div>
+                                            <div class="shop__time">пн-вс 9:00 - 22:00</div>
+                                            <div class="shop__count">658 шт.</div>
+                                        </div>
+                                        <div class="shop">
+                                            <div class="shop__address">ул. 250 лет Челябинска, 10</div>
+                                            <div class="shop__time">пн-вс 9:00 - 22:00</div>
+                                            <div class="shop__count">658 шт.</div>
+                                        </div>
+                                        <div class="shop">
+                                            <div class="shop__address">ул. 250 лет Челябинска, 10</div>
+                                            <div class="shop__time">пн-вс 9:00 - 22:00</div>
+                                            <div class="shop__count">658 шт.</div>
+                                        </div>
+                                    </div> <!--/.shops-->
+
+                                    <div class="modal__map js-modal__content" id="modal__map">
+                                        
+                                    </div>
+                                </div>
+                                <script>
+                                        $(document).ready(function () {
+                                            $(".js-modal__shops").iziModal({
+                                                zindex: 10000,
+                                                width: 770,
+                                                radius: 14,
+                                                onOpened: function () {
+                                                    $(".js-modal__window").modalTabs();
+                                                    $('.js-modal__shops').iziModal('stopLoading');
+                                                    $('.js-modal__body').css('overflow', 'hidden');
+                                                    if (!$("#modal__map").hasClass("active")) {
+                                                        ymaps.ready(init__modal);
+                                                        $("#modal__map").addClass("active");
+                                                        }                                                             
+                                                    },
+                                                onClosed: function () {
+                                                    $('.js-modal__body').css('overflow', 'auto');
+                                                },
+                                            });
+                                            
+                                            $(document).on("click", ".js-modal__open", function () {
+                                                $('.js-modal__shops').iziModal('startLoading');
+                                                $(".js-modal__shops").iziModal("open");
+                                            });
+                                        });
+                                    // Функция ymaps.ready() будет вызвана, когда
+                                    // загрузятся все компоненты API, а также когда будет готово DOM-дерево.
+                                    
+                                
+                                    function init__modal() {
+                                        // Создание карты.
+                                        // https://tech.yandex.ru/maps/doc/jsapi/2.1/dg/concepts/map-docpage/
+                                        var myMap = new ymaps.Map("modal__map", {
+                                            // Координаты центра карты.
+                                            // Порядок по умолчнию: «широта, долгота».
+                                            center: [55.83, 49.108795],
+                                            // Уровень масштабирования. Допустимые значения:
+                                            // от 0 (весь мир) до 19.
+                                            zoom: 14,
+                                            // Элементы управления
+                                            // https://tech.yandex.ru/maps/doc/jsapi/2.1/dg/concepts/controls/standard-docpage/
+                                            controls: [
+                                
+                                                'zoomControl', // Ползунок масштаба
+                                                'rulerControl', // Линейка
+                                                'routeButtonControl', // Панель маршрутизации
+                                                'trafficControl', // Пробки
+                                                'typeSelector', // Переключатель слоев карты
+                                                'fullscreenControl', // Полноэкранный режим
+                                
+                                                // Поисковая строка
+                                                new ymaps.control.SearchControl({
+                                                    options: {
+                                                        // вид - поисковая строка
+                                                        size: 'large',
+                                                        // Включим возможность искать не только топонимы, но и организации.
+                                                        provider: 'yandex#search'
+                                                    }
+                                                })
+                                
+                                            ]
+                                        });
+
+                                        objectManager = new ymaps.ObjectManager({
+                                            // Чтобы метки начали кластеризоваться, выставляем опцию.
+                                            clusterize: true,
+                                            // ObjectManager принимает те же опции, что и кластеризатор.
+                                            gridSize: 32,
+                                            clusterDisableClickZoom: true,
+                                            iconCaption: "example",
+                                        });
+                                        
+                                        objectManager.clusters.options.set('preset', 'islands#blueClusterIcons');
+                                        myMap.geoObjects.add(objectManager);
+                                
+                                        
+                                        let data = {"type":"FeatureCollection","features":[{"type":"Feature","id":"26","geometry":{"type":"Point","coordinates":[55.627575,51.800938]},"properties":{"balloonContentHeader":"\u0425\u0438\u043c\u0438\u043a\u043e\u0432 \u041f\u0440., 36","balloonContentBody":"<div><b>\u0420\u0435\u0436\u0438\u043c \u0440\u0430\u0431\u043e\u0442\u044b:<\/b> \u041f\u043d-\u0412\u0441 \u0441 10:00 \u0434\u043e 22:00<\/div><div><b>\u0422\u0435\u043b\u0435\u0444\u043e\u043d:<\/b> 89655911624<\/div><div><b>\u041f\u043e\u0447\u0442\u0430:<\/b> m19@kzn-globus.ru<\/div>"}},{"type":"Feature","id":"27","geometry":{"type":"Point","coordinates":[55.62389,51.817071]},"properties":{"balloonContentHeader":"\u0422\u0443\u043a\u0430\u044f, 2\u0430","balloonContentBody":"<div><b>\u0420\u0435\u0436\u0438\u043c \u0440\u0430\u0431\u043e\u0442\u044b:<\/b> \u041f\u043d-\u0412\u0441 \u0441 10:00 \u0434\u043e 22:00<\/div><div><b>\u0422\u0435\u043b\u0435\u0444\u043e\u043d:<\/b> 89655911984<\/div><div><b>\u041f\u043e\u0447\u0442\u0430:<\/b> m20@kzn-globus.ru<\/div>"}},{"type":"Feature","id":"64","geometry":{"type":"Point","coordinates":[55.636275,51.805609]},"properties":{"balloonContentHeader":"\u0421\u0442\u0440\u043e\u0438\u0442\u0435\u043b\u0435\u0439, 32","balloonContentBody":"<div><b>\u0420\u0435\u0436\u0438\u043c \u0440\u0430\u0431\u043e\u0442\u044b:<\/b> \u041f\u043d-\u0412\u0441 \u0441 10:00 \u0434\u043e 22:00<\/div><div><b>\u0422\u0435\u043b\u0435\u0444\u043e\u043d:<\/b> 89196260821<\/div><div><b>\u041f\u043e\u0447\u0442\u0430:<\/b> m57@kzn-globus.ru<\/div>"}},{"type":"Feature","id":"65","geometry":{"type":"Point","coordinates":[55.634451,51.798692]},"properties":{"balloonContentHeader":"\u0421\u0442\u0443\u0434\u0435\u043d\u0447\u0435\u0441\u043a\u0430\u044f, 8\u0432","balloonContentBody":"<div><b>\u0420\u0435\u0436\u0438\u043c \u0440\u0430\u0431\u043e\u0442\u044b:<\/b> \u041f\u043d-\u0412\u0441 \u0441 10:00 \u0434\u043e 22:00<\/div><div><b>\u0422\u0435\u043b\u0435\u0444\u043e\u043d:<\/b> 89178901960<\/div><div><b>\u041f\u043e\u0447\u0442\u0430:<\/b> m58@kzn-globus.ru<\/div>"}},{"type":"Feature","id":"119","geometry":{"type":"Point","coordinates":[55.656961,51.803758]},"properties":{"balloonContentHeader":"\u0427\u0438\u0448\u043c\u0430\u043b\u0435, 4\u0430","balloonContentBody":"<div><b>\u0420\u0435\u0436\u0438\u043c \u0440\u0430\u0431\u043e\u0442\u044b:<\/b> \u041f\u043d-\u0412\u0441 \u0441 10:00 \u0434\u043e 22:00<\/div><div><b>\u0422\u0435\u043b\u0435\u0444\u043e\u043d:<\/b> 89172901457<\/div><div><b>\u041f\u043e\u0447\u0442\u0430:<\/b> m112@kzn-globus.ru<\/div>"}},{"type":"Feature","id":"131","geometry":{"type":"Point","coordinates":[55.628235,51.817062]},"properties":{"balloonContentHeader":"\u0421\u0442\u0440\u043e\u0438\u0442\u0435\u043b\u0435\u0439 \u041f\u0440-\u0442,15\u0431","balloonContentBody":"<div><b>\u0420\u0435\u0436\u0438\u043c \u0440\u0430\u0431\u043e\u0442\u044b:<\/b> \u041f\u043d-\u0412\u0441 \u0441 10:00 \u0434\u043e 22:00<\/div><div><b>\u0422\u0435\u043b\u0435\u0444\u043e\u043d:<\/b> 89178807354<\/div><div><b>\u041f\u043e\u0447\u0442\u0430:<\/b> m124@kzn-globus.ru<\/div>"}},{"type":"Feature","id":"133","geometry":{"type":"Point","coordinates":[55.634517,51.795359]},"properties":{"balloonContentHeader":"30 \u041b\u0435\u0442 \u041f\u043e\u0431\u0435\u0434\u044b, 18\u0430","balloonContentBody":"<div><b>\u0420\u0435\u0436\u0438\u043c \u0440\u0430\u0431\u043e\u0442\u044b:<\/b> \u041f\u043d-\u0412\u0441 \u0441 10:00 \u0434\u043e 22:00<\/div><div><b>\u0422\u0435\u043b\u0435\u0444\u043e\u043d:<\/b> 89179200418<\/div><div><b>\u041f\u043e\u0447\u0442\u0430:<\/b> m126@kzn-globus.ru<\/div>"}},{"type":"Feature","id":"143","geometry":{"type":"Point","coordinates":[55.624495,51.782226]},"properties":{"balloonContentHeader":"\u0413\u0430\u0439\u043d\u0443\u043b\u043b\u0438\u043d\u0430, 8\u0430","balloonContentBody":"<div><b>\u0420\u0435\u0436\u0438\u043c \u0440\u0430\u0431\u043e\u0442\u044b:<\/b> \u041f\u043d-\u0412\u0441 \u0441 10:00 \u0434\u043e 22:00<\/div><div><b>\u0422\u0435\u043b\u0435\u0444\u043e\u043d:<\/b> 89196301455<\/div><div><b>\u041f\u043e\u0447\u0442\u0430:<\/b> m136@kzn-globus.ru<\/div>"}},{"type":"Feature","id":"147","geometry":{"type":"Point","coordinates":[55.626675,51.786951]},"properties":{"balloonContentHeader":"\u0421\u0442\u0443\u0434\u0435\u043d\u0447\u0435\u0441\u043a\u0430\u044f, 48\u0430","balloonContentBody":"<div><b>\u0420\u0435\u0436\u0438\u043c \u0440\u0430\u0431\u043e\u0442\u044b:<\/b> \u041f\u043d-\u0412\u0441 \u0441 10:00 \u0434\u043e 22:00<\/div><div><b>\u0422\u0435\u043b\u0435\u0444\u043e\u043d:<\/b> 89196301450<\/div><div><b>\u041f\u043e\u0447\u0442\u0430:<\/b> m140@kzn-globus.ru<\/div>"}},{"type":"Feature","id":"150","geometry":{"type":"Point","coordinates":[55.639176,51.836188]},"properties":{"balloonContentHeader":"\u0413\u0430\u0433\u0430\u0440\u0438\u043d\u0430, 2\u0431","balloonContentBody":"<div><b>\u0420\u0435\u0436\u0438\u043c \u0440\u0430\u0431\u043e\u0442\u044b:<\/b> \u041f\u043d-\u0412\u0441 \u0441 10:00 \u0434\u043e 22:00<\/div><div><b>\u0422\u0435\u043b\u0435\u0444\u043e\u043d:<\/b> 89178609671<\/div><div><b>\u041f\u043e\u0447\u0442\u0430:<\/b> m143@kzn-globus.ru<\/div>"}},{"type":"Feature","id":"172","geometry":{"type":"Point","coordinates":[55.631658,51.812171]},"properties":{"balloonContentHeader":"\u0421\u0442\u0440\u043e\u0438\u0442\u0435\u043b\u0435\u0439, 27\u0430","balloonContentBody":"<div><b>\u0420\u0435\u0436\u0438\u043c \u0440\u0430\u0431\u043e\u0442\u044b:<\/b> \u041f\u043d-\u0412\u0441 \u0441 10:00 \u0434\u043e 22:00<\/div><div><b>\u0422\u0435\u043b\u0435\u0444\u043e\u043d:<\/b> 89872201089<\/div><div><b>\u041f\u043e\u0447\u0442\u0430:<\/b> m165@kzn-globus.ru<\/div>"}},{"type":"Feature","id":"179","geometry":{"type":"Point","coordinates":[55.655082,51.845494]},"properties":{"balloonContentHeader":"\u041a\u0430\u0439\u043c\u0430\u043d\u043e\u0432\u0430, 16\/1","balloonContentBody":"<div><b>\u0420\u0435\u0436\u0438\u043c \u0440\u0430\u0431\u043e\u0442\u044b:<\/b> \u041f\u043d-\u0412\u0441 \u0441 10:00 \u0434\u043e 22:00<\/div><div><b>\u0422\u0435\u043b\u0435\u0444\u043e\u043d:<\/b> 89872201218<\/div><div><b>\u041f\u043e\u0447\u0442\u0430:<\/b> m172@kzn-globus.ru<\/div>"}},{"type":"Feature","id":"186","geometry":{"type":"Point","coordinates":[55.606695,51.78475]},"properties":{"balloonContentHeader":"\u0426\u0435\u043d\u0442\u0440\u0430\u043b\u044c\u043d\u0430\u044f, 51\u0430","balloonContentBody":"<div><b>\u0420\u0435\u0436\u0438\u043c \u0440\u0430\u0431\u043e\u0442\u044b:<\/b> \u041f\u043d-\u0412\u0441 \u0441 10:00 \u0434\u043e 22:00<\/div><div><b>\u0422\u0435\u043b\u0435\u0444\u043e\u043d:<\/b> 89869001206<\/div><div><b>\u041f\u043e\u0447\u0442\u0430:<\/b> m179@kzn-globus.ru<\/div>"}},{"type":"Feature","id":"195","geometry":{"type":"Point","coordinates":[55.642982,51.83776]},"properties":{"balloonContentHeader":"\u0413\u0430\u0433\u0430\u0440\u0438\u043d\u0430, 7\u0432","balloonContentBody":"<div><b>\u0420\u0435\u0436\u0438\u043c \u0440\u0430\u0431\u043e\u0442\u044b:<\/b> \u041f\u043d-\u0412\u0441 \u0441 10:00 \u0434\u043e 22:00<\/div><div><b>\u0422\u0435\u043b\u0435\u0444\u043e\u043d:<\/b> 89196900361<\/div><div><b>\u041f\u043e\u0447\u0442\u0430:<\/b> m182@kzn-globus.ru<\/div>"}},{"type":"Feature","id":"222","geometry":{"type":"Point","coordinates":[55.65559,51.824635]},"properties":{"balloonContentHeader":"\u041c\u0435\u043d\u0434\u0435\u043b\u0435\u0435\u0432\u0430, 35\u0430","balloonContentBody":"<div><b>\u0420\u0435\u0436\u0438\u043c \u0440\u0430\u0431\u043e\u0442\u044b:<\/b> \u041f\u043d-\u0412\u0441 \u0441 10:00 \u0434\u043e 22:00<\/div><div><b>\u0422\u0435\u043b\u0435\u0444\u043e\u043d:<\/b> 89172904845<\/div><div><b>\u041f\u043e\u0447\u0442\u0430:<\/b> m209@kzn-globus.ru<\/div>"}},{"type":"Feature","id":"274","geometry":{"type":"Point","coordinates":[55.600537,51.803489]},"properties":{"balloonContentHeader":"\u0426\u0435\u043d\u0442\u0440\u0430\u043b\u044c\u043d\u0430\u044f, 3\u0430","balloonContentBody":"<div><b>\u0420\u0435\u0436\u0438\u043c \u0440\u0430\u0431\u043e\u0442\u044b:<\/b> \u0441 10:00 \u0434\u043e 22:00<\/div><div><b>\u0422\u0435\u043b\u0435\u0444\u043e\u043d:<\/b> 89872703756<\/div><div><b>\u041f\u043e\u0447\u0442\u0430:<\/b> m228@kzn-globus.ru<\/div>"}},{"type":"Feature","id":"283","geometry":{"type":"Point","coordinates":[55.637545,51.794766]},"properties":{"balloonContentHeader":"\u041c\u0438\u0440\u0430 \u043f\u0440-\u0442, 93\u0431","balloonContentBody":"<div><b>\u0420\u0435\u0436\u0438\u043c \u0440\u0430\u0431\u043e\u0442\u044b:<\/b> \u0441 10:00 \u0434\u043e 22:00<\/div><div><b>\u0422\u0435\u043b\u0435\u0444\u043e\u043d:<\/b> 89867204770<\/div><div><b>\u041f\u043e\u0447\u0442\u0430:<\/b> m244@kzn-globus.ru<\/div>"}},{"type":"Feature","id":"290","geometry":{"type":"Point","coordinates":[55.642474,51.792889]},"properties":{"balloonContentHeader":"\u0421\u0442\u0440\u043e\u0438\u0442\u0435\u043b\u0435\u0439 \u041f\u0440., 68\u0431","balloonContentBody":"<div><b>\u0420\u0435\u0436\u0438\u043c \u0440\u0430\u0431\u043e\u0442\u044b:<\/b> \u041f\u043d-\u0412\u0441 \u0441 10:00 \u0434\u043e 22:00<\/div><div><b>\u0422\u0435\u043b\u0435\u0444\u043e\u043d:<\/b> 89061146268<\/div><div><b>\u041f\u043e\u0447\u0442\u0430:<\/b> m251@kzn-globus.ru<\/div>"}},{"type":"Feature","id":"296","geometry":{"type":"Point","coordinates":[55.64035,51.793068]},"properties":{"balloonContentHeader":"\u0421\u0442\u0440\u043e\u0438\u0442\u0435\u043b\u0435\u0439 \u041f\u0440-\u0442, 57\u0430","balloonContentBody":"<div><b>\u0420\u0435\u0436\u0438\u043c \u0440\u0430\u0431\u043e\u0442\u044b:<\/b> \u041f\u043d-\u0412\u0441 \u0441 10:00 \u0434\u043e 22:00<\/div><div><b>\u0422\u0435\u043b\u0435\u0444\u043e\u043d:<\/b> 89178900492<\/div><div><b>\u041f\u043e\u0447\u0442\u0430:<\/b> m260@kzn-globus.ru<\/div>"}},{"type":"Feature","id":"303","geometry":{"type":"Point","coordinates":[55.647331,51.80878]},"properties":{"balloonContentHeader":"\u041c\u0438\u0440\u0430 \u041f\u0440-\u0442, 45\u0410","balloonContentBody":"<div><b>\u0420\u0435\u0436\u0438\u043c \u0440\u0430\u0431\u043e\u0442\u044b:<\/b> \u041f\u043d-\u0412\u0441 \u0441 10:00 \u0434\u043e 22:00<\/div><div><b>\u0422\u0435\u043b\u0435\u0444\u043e\u043d:<\/b> 89061234780<\/div><div><b>\u041f\u043e\u0447\u0442\u0430:<\/b> m266@kzn-globus.ru<\/div>"}},{"type":"Feature","id":"307","geometry":{"type":"Point","coordinates":[55.634659,51.786547]},"properties":{"balloonContentHeader":"\u041d\u0438\u0436\u043d\u0435\u043a\u0430\u043c\u0441\u043a \u043f\u0440-\u0442 \u041c\u0438\u0440\u0430,98","balloonContentBody":"<div><b>\u0420\u0435\u0436\u0438\u043c \u0440\u0430\u0431\u043e\u0442\u044b:<\/b> \u041f\u043d-\u0412\u0441 \u0441 10:00 \u0434\u043e 22:00<\/div><div><b>\u0422\u0435\u043b\u0435\u0444\u043e\u043d:<\/b> 89656241689<\/div><div><b>\u041f\u043e\u0447\u0442\u0430:<\/b> m269@kzn-globus.ru<\/div>"}},{"type":"Feature","id":"308","geometry":{"type":"Point","coordinates":[55.632525,51.787957]},"properties":{"balloonContentHeader":"\u041c\u0438\u0440\u0430 \u041f\u0440-\u0442, 110","balloonContentBody":"<div><b>\u0420\u0435\u0436\u0438\u043c \u0440\u0430\u0431\u043e\u0442\u044b:<\/b> \u041f\u043d-\u0412\u0441 \u0441 10:00 \u0434\u043e 22:00<\/div><div><b>\u0422\u0435\u043b\u0435\u0444\u043e\u043d:<\/b> 89656241690<\/div><div><b>\u041f\u043e\u0447\u0442\u0430:<\/b> m272@kzn-globus.ru<\/div>"}}]}
+                                        
+                                    
+                                        
+                                        myMap.behaviors.disable('scrollZoom');
+                                        $.ajax({
+                                            url: 'https://kzn-globus.ru/ajax/get_city_json?city_id=1'
+                                        }).done(function(data){
+                                            objectManager.add(data);
+                                        });
+                                        var address = "Казань";
+                                        var geocoder = ymaps.geocode(address);
+                                        
+                                        
+                                        geocoder.then(
+                                            function (res) {
+                                                var coordinates = res.geoObjects.get(0).geometry.getCoordinates();
+                                                myMap.setCenter(coordinates);
+                                            }
+                                        );
+                                        
+                                        //на мобильных устройствах... (проверяем по userAgent браузера)
+                                        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+                                            //... отключаем перетаскивание карты
+                                            myMap.behaviors.disable('drag');
+                                        }
+                                
+                                        // Добавление метки
+                                        // https://tech.yandex.ru/maps/doc/jsapi/2.1/ref/reference/Placemark-docpage/
+                                        // var myPlacemark = new ymaps.Placemark([55.83, 49.090], {
+                                            
+                                        //     hintContent: 'Содержимое всплывающей подсказки',
+                                        //     // Балун откроется при клике по метке.
+                                        //     balloonContent: 'Содержимое балуна',
+                                        //     iconCaption: "18",
+                                        // });
+                                        // myMap.geoObjects.add(myPlacemark);
+                                
+                                    }
+                                </script>
+                            
+                            </div>
+                        </div>
+                    </div> <!--/.product__describe-->
+                </div>
+            </div> <!--/.row-->
+
+            <div class="tabs js-tabs">
+                <ul class="tabs__options js-tabs__options">
+                    <li class="js-tabs__option tabs__option">Описание</li>
+                    <!-- <li class="js-tabs__option tabs__option">Раздел №2</li> -->
+                </ul>
+                <div class="tabs__items js-tabs__items">
+                    <div class="tabs__item js-tabs__item">
+                        <div class="tabs__button js-tabs__button">Описание <img src="/images/icons/arrow-down-catalog.svg" alt=""></div>
+                        <div class="tabs__inner js-tabs__inner">
+                            <div class="tabs__title">{.title}</div>
+                            <div class="tabs__text">
+                                {.describe}
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="tabs__item js-tabs__item">
+                        <div class="tabs__button js-tabs__button">Отзывы <img src="/images/icons/arrow-down-catalog.svg" alt=""></div>
+                        <div class="tabs__inner js-tabs__inner">
+                            <div class="tabs__title">Виски Bushmill2</div>
+                            <div class="tabs__text">
+                                <p>По исходному сырью различают несколько видов виски:</p>
+                                <ol>
+                                    <li>солодовый — прsиготовленный из ячменного солода без каких-либо добавок;</li>
+                                    <li>зерновой — используемый для изготовления смешанного виски;</li>
+                                    <li>смешанный или купажированный — получается в результате смешивания первых двух видов напитка, это наиболее распространенный вид, который выпускают известные бренды;</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>            
+            </div> 
+        </div> <!--/.product__info-->
+
+        <div class="product__similar-box">
+            <div class="product__title">Похожие товары</div>
+            <div class="product__similar">
+                <div class="row">
+                    <div class="col-md-6 col-lg-3">
+                        <div class="catalog__item--catalog">
+                            <div class="card__options--catalog">
+                                <div class="card__option--catalog">Водка</div>
+                                <div class="card__option--catalog">4500мл</div>
+                            </div>
+    
+                            <div class="card__image--catalog">
+                                <a href="#" class="image__link"><img src="/images/vodka-catalog.jpg" alt=""></a>
+                            </div>
+                            
+                            <div class="card__describe--catalog">
+                                <a href="#" class="describe__link">Ром Captain Morgan Spiced Gold 700мл (Капитан Морган Спайсед)</a>
+                            </div>
+                            <div class="price-button--catalog">
+                                <div class="card__price--catalog">
+                                    <div class="price__num--catalog">6889</div>
+                                    <div class="price__value--catalog">руб.</div>
+                                </div>
+        
+                                <div class="card__button-box--catalog">
+                                    <a class="card__button--catalog">Подробнее</a>
+                                </div>
+                            </div>
+                        </div> <!-- ./catalog__item-->                            
+                    </div> <!--/.col-md-3-->
+
+                    <div class="col-md-6 col-lg-3">
+                        <div class="catalog__item--catalog">
+                            <div class="card__options--catalog">
+                                <div class="card__option--catalog">Водка</div>
+                                <div class="card__option--catalog">4500мл</div>
+                            </div>
+    
+                            <div class="card__image--catalog">
+                                <a href="#" class="image__link"><img src="/images/vodka-catalog.jpg" alt=""></a>
+                            </div>
+                            
+                            <div class="card__describe--catalog">
+                                <a href="#" class="describe__link">Ром Captain Morgan Spiced Gold 700мл (Капитан Морган Спайсед)</a>
+                            </div>
+                            <div class="price-button--catalog">
+                                <div class="card__price--catalog">
+                                    <div class="price__num--catalog">6889</div>
+                                    <div class="price__value--catalog">руб.</div>
+                                </div>
+        
+                                <div class="card__button-box--catalog">
+                                    <a class="card__button--catalog">Подробнее</a>
+                                </div>
+                            </div>
+                        </div> <!-- ./catalog__item-->                            
+                    </div> <!--/.col-md-3-->
+
+                    <div class="col-md-6 col-lg-3">
+                        <div class="catalog__item--catalog">
+                            <div class="card__options--catalog">
+                                <div class="card__option--catalog">Водка</div>
+                                <div class="card__option--catalog">4500мл</div>
+                            </div>
+    
+                            <div class="card__image--catalog">
+                                <a href="#" class="image__link"><img src="/images/vodka-catalog.jpg" alt=""></a>
+                            </div>
+                            
+                            <div class="card__describe--catalog">
+                                <a href="#" class="describe__link">Ром Captain Morgan Spiced Gold 700мл (Капитан Морган Спайсед)</a>
+                            </div>
+                            <div class="price-button--catalog">
+                                <div class="card__price--catalog">
+                                    <div class="price__num--catalog">6889</div>
+                                    <div class="price__value--catalog">руб.</div>
+                                </div>
+        
+                                <div class="card__button-box--catalog">
+                                    <a class="card__button--catalog">Подробнее</a>
+                                </div>
+                            </div>
+                        </div> <!-- ./catalog__item-->                            
+                    </div> <!--/.col-md-3-->
+
+                    <div class="col-md-6 col-lg-3">
+                        <div class="catalog__item--catalog">
+                            <div class="card__options--catalog">
+                                <div class="card__option--catalog">Водка</div>
+                                <div class="card__option--catalog">4500мл</div>
+                            </div>
+    
+                            <div class="card__image--catalog">
+                                <a href="#" class="image__link"><img src="/images/vodka-catalog.jpg" alt=""></a>
+                            </div>
+                            
+                            <div class="card__describe--catalog">
+                                <a href="#" class="describe__link">Ром Captain Morgan Spiced Gold 700мл (Капитан Морган Спайсед)</a>
+                            </div>
+                            <div class="price-button--catalog">
+                                <div class="card__price--catalog">
+                                    <div class="price__num--catalog">6889</div>
+                                    <div class="price__value--catalog">руб.</div>
+                                </div>
+        
+                                <div class="card__button-box--catalog">
+                                    <a class="card__button--catalog">Подробнее</a>
+                                </div>
+                            </div>
+                        </div> <!-- ./catalog__item-->                            
+                    </div> <!--/.col-md-3-->
+                </div>
+            </div> <!--/.product__similar-->
+        </div> <!--/.product__similar-box-->
+
+        
+    </div> <!--/.product-->
+
+</div> <!--container-->

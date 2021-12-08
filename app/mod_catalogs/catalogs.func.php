@@ -36,12 +36,12 @@ class CatalogsController
 
 		$mas = array ();
 		$mas[] = array ('title' => 'Главная', 'link' => '/');
-		$mas[] = array ('title' => d()->this->title, 'link' => '/catalogs/' . d()->this->url);
+		$mas[] = array ('title' => d()->this->title, 'link' => "/catalogs/" . d()->this->url);
 		d()->breads = $mas;
 		
-		//print '<pre style="margin-top: 120px">';
-		//var_dump(d()->breads);
-		//print '</pre>';
+		// print '<pre style="margin-top: 120px">';
+		// var_dump(d()->breads);
+		// print '</pre>';
 	}
 
 	function products_show($url) {

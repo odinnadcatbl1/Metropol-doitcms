@@ -13,7 +13,7 @@ d()->parent_catalog = d()->Catalog->where('id = ?', d()->this->catalog_id);
     </div>
 
     <div class="card__describe js-descr-height">
-        <a href="#" class="describe__link">{.title}</a>
+        <a href="/products/{.url}" class="describe__link">{.title}</a>
     </div>
     <div class="price-button">
         <div class="card__price">
@@ -22,7 +22,7 @@ d()->parent_catalog = d()->Catalog->where('id = ?', d()->this->catalog_id);
         </div>
 
         <div class="card__button-box">
-            <a href="#" class="card__button <?if(d()->green_col):?> btn--green<?endif;?>">Подробнее</a>
+            <a href="/products/{.url}" class="card__button <?if(d()->green_col):?> btn--green<?endif;?>">Подробнее</a>
         </div>
     </div>
 </div> <!-- ./catalog__item--> 

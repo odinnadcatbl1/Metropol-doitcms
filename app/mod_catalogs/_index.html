@@ -1,13 +1,5 @@
 <div class="container">
-	<!--breadcrumb-->
-	<div class="breadcrumb">           
-			<nav aria-label="Breadcrumb" class="breadcrumb-box">
-				<ul class="breadcrumb__list">
-					<li><a href="/index.html">Главная</a></li>
-					<li><span aria-current="page">Каталог товаров</span></li>
-				</ul>
-			</nav>
-	</div> <!--./breadcrumb-->
+	{{breads}}
 	<div class="catalog__title--catalog">
 		<h1><?if(d()->this->h1 != ""):?>{.h1}<? else: ?>{.title}<?endif;?> {{edit}}{{add 'catalogs', 'catalog_id = 0'}}</h1>
 	</div>

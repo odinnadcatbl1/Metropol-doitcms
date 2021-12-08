@@ -7,19 +7,20 @@ if ($bread_count > 0) :?>
                 <?$i = 0;?>
                 <?foreach(d()->breads as $v){?>
                 <?$i++;?>
-                <li>
-                    <?if($i < $bread_count):?>
-                        <a href="<?=$v['link'];?>">
-                            <?=$v['title'];?>
-                        </a>
-                    <?else:?>
-                        <span aria-current="page">
-                            <?=$v['title'];?>
-                        </span>
-                    <?endif;?>
-                </li>
+                    <li>
+                        <?if($i < $bread_count):?>
+                            <a href="<?=$v['link'];?>">
+                                <?=$v['title'];?>
+                            </a>
+                        <?else:?>
+                            <span aria-current="page">
+                                <?=$v['title'];?>
+                            </span>
+                        <?endif;?>
+                    </li>
                 <?}?>
             </ul>
         </nav>
     </div>
-<?endif;?>
+<?endif;
+?>

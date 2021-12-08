@@ -8,6 +8,8 @@ route('/', 'pages#');
 route('/catalogs/index', 'catalogs#index');
 route('/catalogs/', 'catalogs#show');
 
+route('/products/', 'products#show');
+
 
 //route('/news/index', 'content', 'news#index');
 //route('/news/index', 'news#index');
