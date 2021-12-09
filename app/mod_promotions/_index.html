@@ -1,0 +1,25 @@
+<div class="container">
+    {{breads}}
+    <div class="title">
+        Актуальные акции{{add 'promotions', 'promotion_id' => 0}}{{sort_icon 'promotions', 'promotion_id' => 0}}
+    </div>
+    
+    <div class="promotions__inner">
+        <div class="row">
+            <foreach Promotion>
+                <div class="col-md-6">
+                    <div class="promotions__item"<?if(iam()):?> style="position: relative;"<?endif;?>><?if(iam()):?><span style="position: absolute; right: 10px; top: 0px;">{{edit}}{{delete}}</span><?endif;?>
+                        <div class="promotions__img"><img src="{{preview d()->this->image, '530', '220'}}" alt=""></div>
+                        <div class="promotions__subtitle">{.title}</div>
+                        <div class="promotions__text">
+                            {.text}
+                        </div>
+                        <div class="promotions__button-box">
+                            <a href="/promotions/{.url}" class="promotions__button">Подробнее</a>
+                        </div>
+                    </div>
+                </div>
+            </foreach>  
+        </div>
+    </div>
+</div>

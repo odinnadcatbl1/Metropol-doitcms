@@ -10,6 +10,9 @@ route('/catalogs/', 'catalogs#show');
 
 route('/products/', 'products#show');
 
+route('/promotions/index', 'promotions#index');
+route('/promotions/', 'promotions#show');
+
 
 //route('/news/index', 'content', 'news#index');
 //route('/news/index', 'news#index');

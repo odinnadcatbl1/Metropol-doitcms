@@ -40,7 +40,7 @@
     font-style: normal;
 }
 
-.page-root {
+.page__root {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -50,6 +50,7 @@
     flex-direction: column;
     min-height: 100vh;
 }
+
 
 body {
     margin: 0; /* по умолчанию есть отступы по 8px, убираем их */
@@ -1547,6 +1548,7 @@ input[type="number"] {
     font-weight: 700;
     line-height: 100%;
     color: #333333;
+    margin-bottom: 30px;
 }
 
 .catalog__subtitle--catalog {
@@ -2018,6 +2020,7 @@ input[type="number"] {
     display: inline-block;
     background-color: #fff;
     border-radius: 14px;
+    width: 100%;
 }
 
 

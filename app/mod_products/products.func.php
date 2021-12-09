@@ -17,6 +17,7 @@ class ProductsController
 
 		$mas = array ();
 		$mas[] = array ('title' => 'Главная', 'link' => '/');
+		$mas[] = array('title' => 'Каталог', 'link' => '/catalogs/');
 		$mas[] = array ('title' => d()->parent_catalog->title, 'link' => '/catalogs/' . d()->parent_catalog->url);
 		$mas[] = array ('title' => d()->this->title, 'link' => "/catalogs/" . d()->this->url);
 		d()->breads = $mas;

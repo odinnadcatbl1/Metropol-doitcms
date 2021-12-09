@@ -36,7 +36,7 @@
     <div class="container">
         <div class="catalog__title">
                                
-            <a href="#" class="catalog__link" >
+            <a href="/catalogs/" class="catalog__link" >
                 <div class="catalog__name">Каталог</div>
                 <div class="catalog__num">(711)</div> 
                 
@@ -62,7 +62,7 @@
     <div class="container">{{edit}}{{delete}}{{add 'products', 'catalog_id' => d()->this->id}}{{sort_icon 'products', 'catalog_id' => d()->this->id}}
         <div class="catalog__title">
                                
-            <a href="#" class="catalog__link" >
+            <a href="/catalogs/{.url}" class="catalog__link" >
                 <div class="catalog__name">{.title}</div>
                 <div class="catalog__num">(711)</div> 
                 
@@ -98,7 +98,7 @@
                                 {.text}
                             </div>
                             <div class="promotions__button-box">
-                                <a href="#" class="promotions__button">Подробнее</a>
+                                <a href="/promotions/{.url}" class="promotions__button">Подробнее</a>
                             </div>
                         </div>
                     </div>
