@@ -68,7 +68,7 @@
                     </div>
                     
                     <form class="search__form js-search__form <?if(url()!="index"):?>search__form--catalog<?endif;?>">
-                        <input class="search__txt" type="search" placeholder="Например: Водка холодная..">
+                        <input class="search__txt <?if(url()!="index"):?>search__txt--catalog<?endif;?>" type="search" placeholder="Например: Водка холодная..">
                         <button class="search__button">
                             <img class="search__icon js-svg-img" src="/images/icons/search-icon.svg" alt="">
                         </button>   
