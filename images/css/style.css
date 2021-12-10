@@ -61,7 +61,7 @@ body {
     background-color: #fff;
 }
 
-.xs-body {
+.xs-body.active {
     overflow: hidden;
 }
 
@@ -1822,7 +1822,7 @@ input[type="number"] {
     padding-bottom: 50px;
 }
 
-.pagination ol {
+.pagination ul {
     font-size: 0;
     padding: 0;
     display: flex;
@@ -1853,7 +1853,7 @@ input[type="number"] {
     overflow: hidden;
 }
 
-.active-page .page-link {
+.page-link.active-page {
     font-weight: 700;
     line-height: 100%;
     color: #fff;
@@ -1866,7 +1866,7 @@ input[type="number"] {
     color: #666666;
 }
 
-.active-page .page-link:hover {
+.page-link.active-page:hover {
     color: #fff;
     text-decoration: none;
     border: 2px #fff solid;

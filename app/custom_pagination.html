@@ -1,26 +1,28 @@
 <div class="paginator">
-	<ul>
-		<?if( d()->paginator_left != ''):?>
-			<li class="page__item next-page previuous-page">
-				<a href="{paginator_left}" class="page-link"><img class="js-svg-img page-link__img" src="/images/icons/arrow-right-catalog.svg" alt=""></a>
-			</li>
-		<?endif;?>
-		<foreach paginator_list>
-			
-			<li class="paginator__item">
-				<?if(d()->this['type'] == 'LINK'):?>
-					<a href="{.link}" class="page-link">{.title}</a>
-				<?elseif(d()->this['type'] == 'ACTIVE'):?>
-					<a href="{.link}" class="page-link active-page">{.title}</a>
-				<?else:?>
-					<span class="paginator__sp">{.title}</span>
-				<?endif;?>
-			</li>
-		</foreach>
-		<?if( d()->paginator_right != ''):?>
-			<li class="page__item next-page">
-				<a href="{paginator_right}" class="page-link"><img class="js-svg-img" src="/images/icons/arrow-right-catalog.svg" alt=""></a>
-			</li>
-		<?endif;?>
-	</ul>
+	<div class="pagination">
+		<ul>
+			<?if( d()->paginator_left != ''):?>
+				<li class="page__item next-page previuous-page">
+					<a href="{paginator_left}" class="page-link"><img class="js-svg-img page-link__img" src="/images/icons/arrow-right-catalog.svg" alt=""></a>
+				</li>
+			<?endif;?>
+			<foreach paginator_list>
+				
+				<li class="page__item">
+					<?if(d()->this['type'] == 'LINK'):?>
+						<a href="{.link}" class="page-link">{.title}</a>
+					<?elseif(d()->this['type'] == 'ACTIVE'):?>
+						<a href="{.link}" class="page-link active-page">{.title}</a>
+					<?else:?>
+						<span class="paginator__sp">{.title}</span>
+					<?endif;?>
+				</li>
+			</foreach>
+			<?if( d()->paginator_right != ''):?>
+				<li class="page__item next-page">
+					<a href="{paginator_right}" class="page-link"><img class="js-svg-img" src="/images/icons/arrow-right-catalog.svg" alt=""></a>
+				</li>
+			<?endif;?>
+		</ul>
+	</div>
 </div>

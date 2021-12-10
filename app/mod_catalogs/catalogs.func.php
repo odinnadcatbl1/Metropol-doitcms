@@ -58,11 +58,11 @@ class CatalogsController
 			return d()->error('404');
 		} 
 
-		d()->products = d()->Product->where('catalog_id = ?', d()->this->id);		
-		print d()->catalogs_products_show_tpl();
+		d()->products = d()->Product->where('catalog_id = ?', d()->this->id);	
 
 		d()->products->paginate(1);
-		d()->paginator = d()->Paginator->generate(d()->products);
+		d()->paginator = d()->Paginator->custom_template('/app/custom_pagination.html')->generate(d()->products);
+		print d()->catalogs_products_show_tpl();
 	}
 
 }
