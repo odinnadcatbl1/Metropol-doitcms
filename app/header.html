@@ -15,7 +15,7 @@
                 </div>       
             </div> <!--/.xs-menu-->
 
-            <div class="md-menu md-menu-index js-md-menu">
+            <div class="md-menu js-md-menu <?if(url()=="index"):?>md-menu-index<?endif;?>">
                 <div class="row">
                     <div class="col-md-8 col-6">
                         <div class="header__nav <?if(url()!="index"):?>header__nav--catalog<?endif;?>"<?if(iam()):?> style="position: relative;"<?endif;?>><?if(iam()):?><span style="position: absolute; left: -40px; top: 20px;">{{add 'catalogs', 'catalog_id' => 0}}{{sort_icon 'catalogs', 'catalog_id' => 0}}</span><?endif;?>                    
@@ -77,14 +77,14 @@
                     <div class="header__mail">
                         <a class="contacts <?if(url()!="index"):?>contacts--catalog<?endif;?>" href = "mailto:{Option.email_show}">
                             <img class="info__icons js-svg-img" src="/images/icons/mail-icon.svg" alt="">
-                            <div class=contacts__text>{Option.email_show}</div>
+                            <div class="contacts__text">{Option.email_show}</div>
                         </a>
                     </div>
 
                     <div class="header__phone">
                         <a class="contacts <?if(url()!="index"):?>contacts--catalog<?endif;?>" href = "tel:<?=str_replace(' ', '', d()->Option->phone_show);?>">
                             <img class="info__icons js-svg-img" src="/images/icons/phone-icon.svg" alt="">
-                            <div class=contacts__text>{Option.phone_show}</div>
+                            <div class="contacts__text">{Option.phone_show}</div>
                         </a>
                     </div>                            
                     <div class="call">

@@ -1,0 +1,144 @@
+ 
+<div class="control-group">
+ 
+  <label class="control-label"><?=d()->field_params[3]?></label>
+  <div class="controls">
+	<a href="#latLangModal" class="btn btn-default js-open-lat-lang"  data-toggle="modal">Указать кординаты на карте  </a>
+  </div>
+</div>
+
+
+<div id="latLangModal" class="modal hide fade" tabindex="-1" role="dialog"   aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Выбор точки</h3>
+  </div>
+  <div class="modal-body">
+	<div>Поиск: <input type="text" class="js-customaddress-latlang form-control">  <button class="btn"  onclick="ymaps_map_locate_map();return false;">Найти</button></div>
+	<div id="ymaps-map-container-map" style="width:100%;height:240px;"></div>
+    
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Закрыть</button>
+    
+  </div>
+</div>
+ 	
+									
+
+<script src="//api-maps.yandex.ru/2.0/?load=package.full&lang=ru-RU&apikey=e5ec1885-ab03-4c56-94fc-effef644b733"  type="text/javascript"></script>
+<script type="text/javascript">
+var myMap;
+var myPlacemark = false;
+var readyX = false ;
+var readyY = false ;
+$(function(){
+	if($('input[name="data[<?=d()->field_params[1]?>]"]').val()!='' && $('input[name="data[<?=d()->field_params[2]?>]"]').val()!=''){
+		 readyX = $('input[name="data[<?=d()->field_params[1]?>]"]').val() ;
+		 readyY = $('input[name="data[<?=d()->field_params[2]?>]"]').val() ;
+
+		}else{
+		readyX = false ;
+		 readyY = false ;
+
+		}
+
+
+		ymaps.ready(ymaps_editor_init_map);
+	 
+}) 
+
+
+
+function ymaps_editor_init_map() {
+	if(readyX !==false &&  readyY!==false){
+		myMap = new ymaps.Map("ymaps-map-container-map", {
+			center: [readyX, readyY],  
+			zoom: 16,
+		 
+			/*,
+		controls: ['zoomControl', 'searchControl', 'typeSelector',  'fullscreenControl']*/
+		}, {
+			balloonMaxWidth: 200
+		});
+		myPlacemark = new ymaps.Placemark([readyX,  readyY], { }, { });
+		myMap.geoObjects.add(myPlacemark);
+		 
+	}else{
+		myMap = new ymaps.Map("ymaps-map-container-map", {
+			 center: [55.79654192723198,49.105664364442745], 
+			zoom: 15 
+		}, {
+			balloonMaxWidth: 200
+		});
+		
+	}
+	myMap.controls
+		// Кнопка изменения масштаба.
+		.add('zoomControl', { left: 5, top: 5 })
+		// Список типов карты
+		.add('typeSelector')
+		//.add('searchControl')
+		// Стандартный набор кнопок
+		.add('mapTools', { left: 35, top: 5 });
+		
+
+	myMap.events.add('click', function (e) {
+	   
+			var coords = e.get('coordPosition');
+		   
+			if(  myPlacemark)
+			{
+				myMap.geoObjects.remove(myPlacemark);
+			}
+			$('input[name="data[<?=d()->field_params[1]?>]"]').val(coords[0].toPrecision(8))
+			$('input[name="data[<?=d()->field_params[2]?>]"]').val(coords[1].toPrecision(8))
+
+ 
+		   
+		   myPlacemark    = new ymaps.Placemark([coords[0].toPrecision(8),  coords[1].toPrecision(8)], { }, {});
+			myMap.geoObjects.add(myPlacemark);
+	});
+}
+function ymaps_map_locate_map() {
+
+ 
+
+	var value =  $('.js-customaddress-latlang').val();
+	if (value.trim()) {
+		ymaps.geocode(value, {
+			results: 1 // Если нужен только один результат, экономим трафик пользователей
+		}).then(function (res) {
+
+			var firstGeoObject = res.geoObjects.get(0)
+			if(!firstGeoObject){
+				bootbox.alert("Невозможно найти место по адресу. Выберите вручную.");
+				return;
+			}
+			var coords = firstGeoObject.geometry.getCoordinates(),
+				bounds = firstGeoObject.properties.get('boundedBy');
+
+			myMap.geoObjects.add(firstGeoObject);
+
+			myMap.setBounds(bounds, {
+				checkZoomRange: true 
+			});
+			if(  myPlacemark)
+			{
+				myMap.geoObjects.remove(myPlacemark);
+			}
+			//form.find('input[name=""]').val(coords[0].toPrecision(8) + ',' + coords[1].toPrecision(8));
+		   
+			myPlacemark    = new ymaps.Placemark([coords[0].toPrecision(8),  coords[1].toPrecision(8)], { }, { });
+			
+			$('input[name="data[<?=d()->field_params[1]?>]"]').val(coords[0].toPrecision(8))
+			$('input[name="data[<?=d()->field_params[2]?>]"]').val(coords[1].toPrecision(8))
+			
+			myMap.geoObjects.add(myPlacemark);
+			myMap.geoObjects.remove(firstGeoObject);
+		});
+	}
+	return false;
+};
+</script>
+ 

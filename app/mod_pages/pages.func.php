@@ -13,6 +13,11 @@ class PagesController
 			return d()->error('404');
 		}
 
+		$mas = array ();
+		$mas[] = array ('title' => 'Главная', 'link' => '/');
+		$mas[] = array('title' => 'Контакты', 'link' => '/contacts/');
+		d()->breads = $mas;
+
 	}
 }
 
