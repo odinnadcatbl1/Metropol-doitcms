@@ -19,13 +19,13 @@
     <script src="/images/js/main.js"></script>
     <title>{.title}</title>
 </head>
-<body> 
+<body class="js-xs-body xs-body"> 
 {{admin_panel}}
 
 	<div class="page__root <?if(url()!="index"):?>page__root--catalog<?endif;?>">
 		{{header}}
 		
-		<div class="content" <?if(url()!="index"):?>style="margin-top: 120px"<?endif;?>>
+		<div class="content" <?if(url()=="index"):?>style="margin-top: 0"<?endif;?>>
 			{{{content}}}
 		</div>
 		

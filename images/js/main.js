@@ -372,7 +372,7 @@ $(document).ready(function () {
     $(document).on("click", ".js-xs-filter__btn", function () {
         $(this).toggleClass("active"); 
         $(".js-filter__form").toggleClass("active");
-        $(".page__root").toggleClass("active");
+        $(".js-xs-body").toggleClass("active");
     });
 
 

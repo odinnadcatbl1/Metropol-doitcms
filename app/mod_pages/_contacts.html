@@ -1,43 +1,42 @@
-<div class="content">
-    <div class="container">
-        {{breads}}
-        <div class="row">
-            <div class="col-md-4">
-                <div class="contacts__info">
-                    <div class="contacts__title">
-                        Главный офис
+<div class="container">
+    {{breads}}
+    <div class="row">
+        <div class="col-md-4 col-12">
+            <div class="contacts__info">
+                <div class="contacts__title">
+                    Главный офис
+                </div>
+                <div class="contacts__location">
+                    <div class="locations__img">
+                        <img src="/images/icons/location_flat.svg" class="js-svg-img location__icon" alt="">
                     </div>
-                    <div class="contacts__location">
-                        <div class="locations__img">
-                            <img src="/images/icons/location_flat.svg" class="js-svg-img location__icon" alt="">
-                        </div>
-                        <div class="contacts__text--main">
-                            {Option.address}
-                        </div>
+                    <div class="contacts__text--main">
+                        {Option.address}
                     </div>
-                    <div class="contacts__mail">
-                        <a class="contacts contacts--main" href = "mailto:{Option.email_show}">
-                            <img class="info__icons js-svg-img" src="/images/icons/mail-icon.svg" alt="">
-                            <div class="contacts__text contacts__text--main">{Option.email_show}</div>
-                        </a>
-                    </div>
+                </div>
+                <div class="contacts__mail">
+                    <a class="contacts contacts--main" href = "mailto:{Option.email_show}">
+                        <img class="info__icons js-svg-img" src="/images/icons/mail-icon.svg" alt="">
+                        <div class="contacts__text contacts__text--main">{Option.email_show}</div>
+                    </a>
+                </div>
 
-                    <div class="contacts__phone">
-                        <a class="contacts contacts--main" href = "tel:<?=str_replace(' ', '', d()->Option->phone_show);?>">
-                            <img class="info__icons js-svg-img" src="/images/icons/phone-icon.svg" alt="">
-                            <div class="contacts__text contacts__text--main">{Option.phone_show}</div>
-                        </a>
-                    </div>             
-                </div>
+                <div class="contacts__phone">
+                    <a class="contacts contacts--main" href = "tel:<?=str_replace(' ', '', d()->Option->phone_show);?>">
+                        <img class="info__icons js-svg-img" src="/images/icons/phone-icon.svg" alt="">
+                        <div class="contacts__text contacts__text--main">{Option.phone_show}</div>
+                    </a>
+                </div>             
             </div>
-            <div class="col-md-8">
-                <div class="contacts__map" id="contacts__map">
-                    
-                </div>
+        </div>
+        <div class="col-md-8 col-12">
+            <div class="contacts__map" id="contacts__map">
+                
             </div>
         </div>
     </div>
 </div>
+
 
 <script>
     // Функция ymaps.ready() будет вызвана, когда
@@ -91,9 +90,9 @@
         // https://tech.yandex.ru/maps/doc/jsapi/2.1/ref/reference/Placemark-docpage/
         var myPlacemark = new ymaps.Placemark([<?=d()->Option->lat;?>, <?=d()->Option->lng;?>], {
             // Хинт показывается при наведении мышкой на иконку метки.
-            hintContent: 'Содержимое всплывающей подсказки',
+           // hintContent: 'Содержимое всплывающей подсказки',
             // Балун откроется при клике по метке.
-            balloonContent: 'Содержимое балуна'
+           // balloonContent: 'Содержимое балуна'
         });
 
         // После того как метка была создана, добавляем её на карту.

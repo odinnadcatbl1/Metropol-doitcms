@@ -13,6 +13,9 @@ route('/products/', 'products#show');
 route('/promotions/index', 'promotions#index');
 route('/promotions/', 'promotions#show');
 
+route('/ajax/get_shops_json', 'main', 'pages#get_shops_json');
+
+
 
 //route('/news/index', 'content', 'news#index');
 //route('/news/index', 'news#index');

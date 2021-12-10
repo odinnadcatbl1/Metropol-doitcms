@@ -61,8 +61,13 @@ body {
     background-color: #fff;
 }
 
+.xs-body {
+    overflow: hidden;
+}
+
 .content {
     margin-bottom: 20px;
+    margin-top: 120px;
 }
 h1 {
     margin: 0;
@@ -318,6 +323,7 @@ h1 {
     font-weight: 400;
     font-style: normal;
     text-decoration: underline;
+    cursor: pointer;
 }
 
 .call__link:hover {
@@ -1168,11 +1174,11 @@ h1 {
     padding-left: 10px;
 }
 
-.breadcrumb__list li::before {
+.breadcrumb__list li::after {
     content: "/";
 }
 
-.breadcrumb__list li:first-child::before {
+.breadcrumb__list li:last-child::after {
     content: "";
 }
 
@@ -2724,6 +2730,10 @@ input[type="number"] {
 }
 
 @media screen and (max-width: 767px) {
+
+    .content {
+        margin-top: 10px;
+    }
 	/*header*/
     .header__bottom,
     .header__bottom.header__bottom--catalog {
@@ -3184,10 +3194,6 @@ input[type="number"] {
         transition: all 0.8s ease 0.2s;
     }
 
-    .page__root.active {
-        overflow: hidden;
-    }
-
     .filter__form {
         transform: translateY(-10%);
         visibility: hidden;
@@ -3309,6 +3315,14 @@ input[type="number"] {
 
     .shop__time:after {
         display: none;
+    }
+
+    .breadcrumb__list {
+        flex-wrap: wrap;
+    }
+    .breadcrumb__list li a,
+    .breadcrumb__list li span{
+        font-size: 10px;
     }
 }
 

@@ -61,7 +61,8 @@ class CatalogsController
 		d()->products = d()->Product->where('catalog_id = ?', d()->this->id);		
 		print d()->catalogs_products_show_tpl();
 
-
+		d()->products->paginate(1);
+		d()->paginator = d()->Paginator->generate(d()->products);
 	}
 
 }
