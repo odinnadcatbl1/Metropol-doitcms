@@ -89,7 +89,7 @@
         
         <div class="promotions__inner">
             <div class="row">
-                <foreach Promotion>
+                <foreach Promotion->where('is_mainpromotion = 1')>
                     <div class="col-md-6">
                         <div class="promotions__item"<?if(iam()):?> style="position: relative;"<?endif;?>><?if(iam()):?><span style="position: absolute; right: 10px; top: 0px;">{{edit}}{{delete}}</span><?endif;?>
                             <div class="promotions__img"><img src="{{preview d()->this->image, '530', '220'}}" alt=""></div>
