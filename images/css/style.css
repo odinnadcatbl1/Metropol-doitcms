@@ -2410,6 +2410,47 @@ input[type="number"] {
     display: none;
 }
 
+
+/*MODAL CALL*/
+
+.modal__call {
+    height: auto;
+    padding: 15px;
+    border-radius: 10px;
+    justify-content: center;
+}
+
+.modal__title--call {
+    text-align: center;
+}
+
+.modal__text {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.4;
+    color: #333333;
+    margin-top: 14px;
+    padding: 0 40px;
+    text-align: center;
+}
+
+.call__form {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.name__input,
+.phone__input {
+    margin-top: 10px;
+}
+
+.call__btn {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border: none;
+}
+
 @media screen and (max-width: 1199px) {
 
 

@@ -452,4 +452,24 @@ $(document).ready(function () {
             }
         });
     }
+
+    if (('.js-modal__call').length) {
+        $(".js-modal__call").iziModal({
+            zindex: 10000,
+            width: 400,
+            radius: 14,
+            onOpened: function () {
+                $('body').css('overflow', 'hidden');
+            }, 
+            onClosed: function () {
+                $('body').css('overflow', 'auto');
+            },
+        });
+
+        $(document).on("click", ".js-call__link", function () {
+            $(".js-modal__call").iziModal("open");
+        });
+
+    }
+
 });
