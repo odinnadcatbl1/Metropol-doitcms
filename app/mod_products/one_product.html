@@ -1,7 +1,7 @@
 <?
 d()->parent_catalog = d()->Catalog->where('id = ?', d()->this->catalog_id);
 ?>
-<div class="catalog__item">
+<div class="catalog__item js-cards-height">
     <div class="card__options" style="position: relative">
         <div class="card__option">{parent_catalog.title}</div>
         <div class="card__option">{capacity}мл</div>

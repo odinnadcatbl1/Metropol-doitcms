@@ -67,6 +67,10 @@ $(document).ready(function () {
         $(".js-descr-height").matchHeight();
     }
 
+    if ($(".js-cards-height").length) {
+        $(".js-cards-height").matchHeight();
+    }
+
 
     // выпадающие блоки
     $(document).on("click", ".js-filter-btn", function () {

@@ -18,6 +18,9 @@ class PromotionsController
 		$mas[] = array('title' => 'Акции', 'link' => '/promotions/');
 		d()->breads = $mas;
 		
+		d()->promotions = d()->Promotion->where('promotion_id = ?', 0);
+		d()->promotions->paginate(1);
+		d()->paginator = d()->Paginator->custom_template('/app/custom_pagination.html')->generate(d()->promotions);
 		// print '<pre style="margin-top: 120px">';
 		// var_dump(d()->breads);
 		// print '</pre>';

@@ -377,7 +377,7 @@
             <div class="col-md-9 xs-order-1">
                 <div class="main">
                     <div class="catalog__title--catalog">
-                        <h1><?if(d()->this->h1 != ""):?>{.h1}<? else: ?>{.title}<?endif;?> {{edit}}{{add 'products', 'catalogs_id' => d()->this->id}}{{sort_icon 'products', 'catalogs_id' => d()->this->id}}</h1>
+                        <h1><?if(d()->this->h1 != ""):?>{.h1}<? else: ?>{.title}<?endif;?> {{edit}}{{add 'products', 'catalog_id' => d()->this->id}}{{sort_icon 'products', 'catalogs_id' => d()->this->id}}</h1>
                     </div>
                     <?if(d()->this->describe!=''):?>
                         <div class="catalog__subtitle--catalog">
