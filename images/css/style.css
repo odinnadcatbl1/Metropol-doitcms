@@ -2154,12 +2154,16 @@ input[type="number"] {
     border-radius: 14px;
     height: auto;
 }
+
+.modal__shops-box {
+    position: relative;
+}
 .modal__window {
     z-index: 1050;
     display: block;
     background-color: #fff;
     border-radius: 14px;
-    padding: 5px 30px 30px 30px;
+    padding: 30px;
 }
 
 .modal__title {
@@ -2318,6 +2322,9 @@ input[type="number"] {
     margin-left: auto;
     margin-right: 15px;
     margin-top: 15px;
+    position: absolute;
+    right: 0;
+    top: 0;
 }
 
 .shop.hide {
@@ -2419,11 +2426,22 @@ input[type="number"] {
 
 /*MODAL CALL*/
 
+.modal__call-box {
+    position: relative;
+}
+
 .modal__call {
     height: auto;
     padding: 15px;
     border-radius: 10px;
     justify-content: center;
+    padding-top: 50px
+}
+
+.modal__close-call {
+    position: absolute;
+    top: 0;
+    right: 0;
 }
 
 .modal__title--call {
