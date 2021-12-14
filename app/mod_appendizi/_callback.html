@@ -1,0 +1,31 @@
+<div class="modal__call-box js-modal__call">
+    <div class="modal__call">
+        <div class="modal__close" data-izimodal-close=""><img src="/images/icons/filter-close.svg" alt=""></div>
+        <div class="modal__title modal__title--call">Заказать обратный звонок</div>
+        <div class="modal__text">Наш специалист перезвонит вам, чтобы рассказать о компании и ответить на возникшие вопросы</div>
+        <div class="modal__form-box">
+            {{form 'callback', 'ajax' => true, 'action' => '/ajax/callback', 'class' => 'call__form'}}
+            {{input 'check', 'style' => 'display: none;', 'value' => '', 'id' => 'modal_form_check'}}
+            <?
+            if(isset(d()->get_params['extra_inp']) && d()->get_params['extra_inp'] != ''):
+            ?>
+            {{input 'extra_inp', 'style' => 'display: none;', 'value' => d()->get_params['extra_inp'], 'id' => 'modal_exta'}}
+            <?
+            endif;
+            ?>
+                <div>
+                    <div>
+                        {{input 'name', 'class' => 'name__input modal__search-input', 'id' => 'modal_form_name', 'placeholder' => 'Ваше имя..', 'autocomplete' => 'off'}}
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        {{input 'phone', 'class' => 'phone__input modal__search-input js-phone__input', 'id' => 'modal_form_name', 'placeholder' => '+7 (999)-999-9999', 'autocomplete' => 'off'}}
+                    </div>
+                </div>
+                
+                <button class="card__button--catalog call__btn js-disabled">Заказать звонок</button>
+            {{/form}}
+        </div>
+    </div>
+</div>

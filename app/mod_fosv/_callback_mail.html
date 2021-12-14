@@ -1,0 +1,16 @@
+Письмо с сайта <?php print $_SERVER['HTTP_HOST']; ?>
+<?if(isset(d()->params['name']) && d()->params['name'] != ''):?>
+<div>Имя: {params.name}</div>
+<?endif;?>
+
+<?if(isset(d()->params['phone']) && d()->params['phone'] != ''):?>
+<div>Телефон: {params.phone}</div>
+<?endif;?>
+
+<?if(isset(d()->params['email']) && d()->params['email'] != ''):?>
+<div>Телефон: {params.email}</div>
+<?endif;?>
+
+<?if(isset(d()->params['text']) && d()->params['text'] != ''):?>
+<div>Текст: {params.text}</div>
+<?endif;?>

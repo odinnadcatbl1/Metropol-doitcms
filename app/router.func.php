@@ -15,6 +15,8 @@ route('/promotions/', 'promotions#show');
 
 route('/ajax/get_shops_json', 'main', 'pages#get_shops_json');
 
+route('/get/appendizi', 'main', 'appendizi');
+route('/ajax/callback', 'main', 'fosv_callback');
 
 
 //route('/news/index', 'content', 'news#index');

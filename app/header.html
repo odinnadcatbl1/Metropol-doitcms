@@ -4,7 +4,7 @@
 
             <div class="xs-menu js-xs-menu">
                 <div class="burger__logo">
-                    <a href="/index.html"><img src="<?if(url()!="index"):?>/images/metropol-logo-blue.svg<?else:?>/images/metropol-logo.svg<?endif;?>" alt="" class="metropol__logo js-svg-img"></a>
+                    <a href="/"><img src="<?if(url()!="index"):?>/images/metropol-logo-blue.svg<?else:?>/images/metropol-logo.svg<?endif;?>" alt="" class="metropol__logo js-svg-img"></a>
                 </div>
                 <div class="search__div js-search__div">
                     <img src="/images/icons/search-icon.svg" alt="" class="search__div-icon js-svg-img">
@@ -67,8 +67,8 @@
                         <a href="/"><img src="<?if(url()!="index"):?>/images/metropol-logo-blue.svg<?else:?>/images/metropol-logo.svg<?endif;?>" alt="" class="metropol__logo"></a>
                     </div>
                     
-                    <form class="search__form js-search__form <?if(url()!="index"):?>search__form--catalog<?endif;?>">
-                        <input class="search__txt <?if(url()!="index"):?>search__txt--catalog<?endif;?>" type="search" placeholder="Например: Водка холодная..">
+                    <form action="/search" method="GET" class="search__form js-search__form <?if(url()!="index"):?>search__form--catalog<?endif;?>">
+                        <input name="search" class="search__txt <?if(url()!="index"):?>search__txt--catalog<?endif;?>" type="text" placeholder="Например: Водка холодная.." <? if($_GET['search'] != '' && url() == 'search'){echo 'value="' . $_GET['search'] . '"';}?>>
                         <button class="search__button">
                             <img class="search__icon js-svg-img" src="/images/icons/search-icon.svg" alt="">
                         </button>   
@@ -88,23 +88,11 @@
                         </a>
                     </div>                            
                     <div class="call">
-                        <div class="call__link js-call__link <?if(url()!="index"):?>call__link--catalog<?endif;?>">Заказать звонок</div>
+                        <div class="call__link js-call__link js-append-izi <?if(url()!="index"):?>call__link--catalog<?endif;?>" data-templ="callback" data-changeurl="0" data-width="400">Заказать звонок</div>
                     </div>
                 </div> <!--.header__bottom-->
             </div>
         </div> <!--.header__bottom row-->
-    </div>
-    <div class="modal__call-box js-modal__call">
-        <div class="modal__call">
-            <div class="modal__close" data-izimodal-close=""><img src="/images/icons/filter-close.svg" alt=""></div>
-            <div class="modal__title modal__title--call">Заказать обратный звонок</div>
-            <div class="modal__text">Наш специалист перезвонит вам, чтобы рассказать о компании и ответить на возникшие вопросы</div>
-            <form class="call__form">
-                <input type="text" class="name__input modal__search-input" placeholder="Ваше имя..">
-                <input type="text" class="phone__input modal__search-input js-phone__input" placeholder="+7 (___) ___-__-__">
-                <button class="card__button--catalog call__btn">Заказать звонок</button>
-            </form>
-        </div>
     </div>
 
 </header>

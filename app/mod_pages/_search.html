@@ -1,0 +1,46 @@
+<div class="container">
+    {{breads}}
+    <div class="catalog__title--catalog">
+        Результат по запросу "<?=$_GET['search'];?>"
+    </div>
+    <div class="catalog__items--catalog">
+        <div class="row">
+            <foreach products>
+                <?
+                d()->parent_catalog = d()->Catalog->where('id = ?', d()->this->catalog_id);
+                ?>
+                <div class="col-md-6 col-lg-3 col">
+                    <div class="catalog__item--catalog js-cards-height">
+                        <div class="card__options--catalog">
+                            <div class="card__option--catalog">{parent_catalog.title}</div>
+                            <div class="card__option--catalog">{capacity}мл</div>
+                            <?if(iam()):?><span style="position: absolute;right: 30px; z-index:1000;">{{edit}}{{delete}}</span><?endif;?>
+                        </div>
+                    
+                        <div class="card__image--catalog">
+                            <a href="/products/{.url}" class="image__link"><img src="{{preview d()->this->image, '180', '230'}}" alt=""></a>
+                        </div>
+                        
+                        <div class="card__describe--catalog js-descr-height">
+                            <a href="/products/{.url}" class="describe__link">{.title}</a>
+                        </div>
+                        <div class="price-button--catalog">
+                            <div class="card__price--catalog">
+                                <div class="price__num--catalog">{.price}</div>
+                                <div class="price__value--catalog">руб.</div>
+                            </div>
+                    
+                            <div class="card__button-box--catalog">
+                                <a href="/products/{.url}" class="card__button--catalog">Подробнее</a>
+                            </div>
+                        </div>
+                    </div> <!-- ./catalog__item--> 
+                </div> <!--/.col-md-6 col-lg-4-->
+            </foreach>
+        </div> <!--/.row catalog__items-->    
+    </div> <!-- ./catalog__items-->
+    <? if(d()->paginator) {?>
+        {paginator}
+    <? }?>
+
+</div>

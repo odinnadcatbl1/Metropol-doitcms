@@ -17,6 +17,129 @@ $(document).ready(function () {
         }
     });
 
+    // чтобы менялось url при открытии модалки
+    function updateQueryStringParameter(uri, key, value) {
+        var re = new RegExp("([?&])" + key + "=.*?(&|#|$)", "i");
+        if( value === undefined ) {
+          if (uri.match(re)) {
+              return uri.replace(re, '$1$2');
+          } else {
+              return uri;
+          }
+        } else {
+          if (uri.match(re)) {
+              return uri.replace(re, '$1' + key + "=" + value + '$2');
+          } else {
+          var hash =  '';
+          if( uri.indexOf('#') !== -1 ){
+              hash = uri.replace(/.*#/, '#');
+              uri = uri.replace(/#.*/, '');
+          }
+          var separator = uri.indexOf('?') !== -1 ? "&" : "?";    
+          return uri + separator + key + "=" + value + hash;
+        }
+        }  
+      }
+
+    $(document).on('focus', '.js-phone__input', function(){
+		$(this).mask("?+7 (999) 999-9999",{placeholder:"_"});
+	});
+
+
+    $(document).on('click', '.js-append-izi', function(event){
+		$_this = $(this);
+		$templ = $_this.attr('data-templ');
+		$params = $_this.attr('data-params');
+		$width = 500;
+		if(typeof $_this.data('width') !== typeof undefined && $_this.data('width') !== false){
+			$width = $_this.data('width');
+		}
+		
+		if($_this.data('width') == 'full'){
+			$width = $(window).width();
+		}
+		
+		if($('#modal-ajax').length){
+			$('#modal-ajax').iziModal('startLoading');
+            $("#modal-ajax").iziModal({
+				radius: 10,});
+			$("#modal-ajax .iziModal-content").removeClass('_ready');
+			$.get('/get/appendizi?templ=' + $templ + '&params=' + $params, function(data) {
+				if($('#modal-ajax').width() != $width){
+					$('#modal-ajax').iziModal('setWidth', $width);
+				}
+				$('#modal-ajax .iziModal-content').html(data).addClass('_ready');
+				
+				$('#modal-ajax').iziModal('stopLoading');
+				if(typeof $_this.data('changeurl') !== typeof undefined && $_this.data('changeurl') !== false && $_this.data('changeurl') == 0){
+					
+				}
+				else{
+					$href = window.location.href.split('?');
+					history.pushState(null, null, $href[0]);
+					history.pushState(null, null, updateQueryStringParameter( window.location.href, 'izi_templ', $templ));
+					history.pushState(null, null, updateQueryStringParameter( window.location.href, 'izi_width', $width));
+					if(typeof $_this.data('params') !== typeof undefined && $_this.data('params') !== false){
+						$params = $_this.data('params').split('|');
+						for (i = 0; i < $params.length; i++) {
+							$param = $params[i].split('=');
+							history.pushState(null, null, updateQueryStringParameter( window.location.href, 'izi_' + $param[0], $param[1]));
+						}
+					}
+				}
+				
+			});
+		}
+		else {
+			$('body').append('<div id="modal-ajax"></div>');
+			$("#modal-ajax").iziModal({
+				padding: 0,
+				transitionIn: 'fadeInUp',
+				autoOpen: !1,
+				width: $width,
+				radius: 10,
+				zindex: 1059,
+				onOpening: function(modal){
+					modal.startLoading();
+					$.get('/get/appendizi?templ=' + $templ + '&params=' + $params, function(data) {
+						$("#modal-ajax .iziModal-content").html(data).addClass('_ready');
+						modal.stopLoading();
+						if(typeof $_this.data('changeurl') !== typeof undefined && $_this.data('changeurl') !== false && $_this.data('changeurl') == 0){
+						
+						}
+						else{
+							history.pushState(null, null, updateQueryStringParameter( window.location.href, 'izi_templ', $templ));
+							history.pushState(null, null, updateQueryStringParameter( window.location.href, 'izi_width', $width));
+							if(typeof $_this.data('params') !== typeof undefined && $_this.data('params') !== false){
+								$params = $_this.data('params').split('|');
+								for (i = 0; i < $params.length; i++) {
+									$param = $params[i].split('=');
+									history.pushState(null, null, updateQueryStringParameter( window.location.href, 'izi_' + $param[0], $param[1]));
+								}
+							}
+						}						
+						
+					}); 
+				}
+			});
+			$("#modal-ajax").iziModal('open');	
+		}
+		
+			
+		
+		event.preventDefault();
+	})
+	
+	$('#modal-ajax').iziModal('close', {
+		transition: 'fadeOutUp'
+	});
+	
+	$(document).on('closed', '#modal-ajax', function (e) {
+		$href = window.location.href.split('?');
+		history.pushState(null, null, $href[0]);
+		$('#modal-ajax').remove();
+	});
+
     // слайдеры
     if ($(".js-catalog__slider").length) {
         const catalogSlider = $(".js-catalog__slider");
@@ -443,7 +566,7 @@ $(document).ready(function () {
         });
     }
 
-    if (('.js-modal__map-btn').length) {
+    if ($('.js-modal__map-btn').length) {
         $(document).on('click', '.js-modal__tab-btn', function () {
             if ($('.js-modal__map-btn').hasClass('active')) {
                 $('.js-modal__search').css('display', 'none');
@@ -451,25 +574,6 @@ $(document).ready(function () {
                 $('.js-modal__search').css('display', 'block');
             }
         });
-    }
-
-    if (('.js-modal__call').length) {
-        $(".js-modal__call").iziModal({
-            zindex: 10000,
-            width: 400,
-            radius: 14,
-            onOpened: function () {
-                $('body').css('overflow', 'hidden');
-            }, 
-            onClosed: function () {
-                $('body').css('overflow', 'auto');
-            },
-        });
-
-        $(document).on("click", ".js-call__link", function () {
-            $(".js-modal__call").iziModal("open");
-        });
-
     }
 
 });

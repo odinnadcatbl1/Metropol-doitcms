@@ -20,6 +20,35 @@ class PagesController
 
 	}
 
+	function search()
+    {
+        $url = url();
+        d()->this = d()->Page->find_by_url($url);
+        if (d()->this->is_empty) {
+            d()->message = "Страница не существует" . d()->add(array('pages', 'url' => $url));
+            return d()->error('404');
+        }
+
+        $mas[] = array('title' => 'Главная', 'link' => '/');
+        $mas[] = array('title' => d()->this->title, 'link' => d()->this->url);
+        d()->breads = $mas;
+
+        if (isset($_GET['search']) && $_GET['search'] != '') {
+            d()->products = d()->Product;
+            d()->products->search('title', 'text', 'describe', $_GET['search']);
+			
+			d()->products->paginate(4);
+		d()->paginator = d()->Paginator->custom_template('/app/custom_pagination.html')->generate(d()->products);
+
+            if (d()->products->is_empty) {
+                return d()->pages_search_empty_tpl();
+            }
+		} else {
+            header('Location: /');
+            exit;
+        }
+	}
+
 	function get_shops_json(){				
 		$arr = array();				
 		foreach(d()->Shop as $v){
