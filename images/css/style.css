@@ -2457,6 +2457,10 @@ input[type="number"] {
     border: none;
 }
 
+.error input {
+    border: 1px solid red !important;
+}
+
 #modal-ajax .iziModal-content {
     opacity: 0;
 }
