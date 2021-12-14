@@ -99,6 +99,7 @@ $(document).ready(function () {
 				width: $width,
 				radius: 10,
 				zindex: 1059,
+                focusInput: false,
 				onOpening: function(modal){
 					modal.startLoading();
 					$.get('/get/appendizi?templ=' + $templ + '&params=' + $params, function(data) {

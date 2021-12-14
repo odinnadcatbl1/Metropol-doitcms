@@ -76,6 +76,7 @@ d()->parent_catalog = d()->Catalog->where('id = ?', d()->this->catalog_id);
                                                     zindex: 10000,
                                                     width: 770,
                                                     radius: 14,
+                                                    focusInput: false,
                                                     onOpened: function () {
                                                         $(".js-modal__window").modalTabs();
                                                         $('.js-modal__shops').iziModal('stopLoading');
