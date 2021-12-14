@@ -1873,6 +1873,12 @@ input[type="number"] {
     background-color: #0099cc90;
 }
 
+.page__sp {
+    font-size: 18px;
+    text-align: center;
+    padding-bottom: 5px;
+    font-weight: 700;
+}
 
 
 
@@ -3375,6 +3381,16 @@ input[type="number"] {
     .breadcrumb__list li a,
     .breadcrumb__list li span{
         font-size: 10px;
+    }
+
+    .page-link {
+        padding: 0;
+        width: 25px;
+        height: 25px;
+    }
+
+    .page__sp {
+        font-size: 14px;
     }
 }
 
