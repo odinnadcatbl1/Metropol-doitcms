@@ -12,98 +12,40 @@
                     <div class="filter__title">
                         Каталог напитков
                     </div>
-                    <div class="filter__type-box js-filter-parent" data-parent="field_1">
-                        <a href="#" class="filter__type js-filter-btn" data-btn="field_1">
-                            <div class="filter__name">Вино</div>
-                            <div class="filter__arrow"><img class="js-svg-img" src="/images/icons/arrow-down-catalog.svg" alt=""></div>
-                        </a>
-                        <div class="filter__items js-filter-content" data-child="field_1">
-                            <div class="filter__item-box js-filter-parent" data-parent="smallfield_1">
-                                <div class="filter__item">
-                                    <div class="filter__item-name">Белое вино</div>
-                                    <a class="filter__item-link js-filter-btn" href="#" data-btn="smallfield_1" data-opened="свернуть" data-closed="развернуть">развернуть</a>
-                                </div>
-                            
-                                <div class="filter__subitem-box js-filter-content" data-child="smallfield_1">
-                                    <a class="filter__subitem" href="#">
-                                        <div class="filter__subitem-name">Вино белое полусладкое <img class="js-svg-img" src="/images/icons/arrow-right-catalog.svg" alt=""></div>
-                                    </a>
-                                    <a class="filter__subitem" href="#">
-                                        <div class="filter__subitem-name">Вино белое полусухое <img class="js-svg-img" src="/images/icons/arrow-right-catalog.svg" alt=""></div>
-                                    </a>
-                                    <a class="filter__subitem" href="#">
-                                        <div class="filter__subitem-name">Вино белое сладкое <img class="js-svg-img" src="/images/icons/arrow-right-catalog.svg" alt=""></div>
-                                    </a>
-                                    <a class="filter__subitem" href="#">
-                                        <div class="filter__subitem-name">Вино белое сухое <img class="js-svg-img" src="/images/icons/arrow-right-catalog.svg" alt=""></div>
-                                    </a>
-                                    
-                                </div> <!--./filter__subitem-box-->
-                            </div> <!--./filter__item-box-->
-                        </div> <!--/.filter__items-->
-                    </div> <!--/.filter__type box-->
+                    <foreach Catalog->where('catalog_id = 0')>
+                        <div class="filter__type-box js-filter-parent" data-parent="field_1">
+                            <a href="/catalogs/{.url}" class="filter__type <?if(d()->Catalog->where('catalog_id = ?', d()->this->id)->ne):?> js-filter-btn<?endif;?>" data-btn="field_1">
+                                <div class="filter__name">{.title}</div>
+                                <?if(d()->Catalog->where('catalog_id = ?', d()->this->id)->ne):?>
+                                    <div class="filter__arrow"><img class="js-svg-img" src="/images/icons/arrow-down-catalog.svg" alt=""></div>
+                                <?endif;?>
+                            </a>
+                            <?if(d()->Catalog->where('catalog_id = ?', d()->this->id)->ne):?>
+                                <foreach Catalog->where('catalog_id = ?', d()->this->id)>
+                                    <div class="filter__items js-filter-content" data-child="field_1">
+                                        <div class="filter__item-box js-filter-parent" data-parent="smallfield_1">
+                                            <div class="filter__item">
+                                                <a href="/catalogs/{.url}" class="filter__item-name">{.title}</a>
+                                                <?if(d()->Catalog->where('catalog_id = ?', d()->this->id)->ne):?>
+                                                    <div class="filter__item-link <?if(d()->Catalog->where('catalog_id = ?', d()->this->id)->ne):?> js-filter-btn<?endif;?>" data-btn="smallfield_1" data-opened="свернуть" data-closed="развернуть">развернуть</div>
+                                                <?endif;?>
+                                            </div>
+                                            <?if(d()->Catalog->where('catalog_id = ?', d()->this->id)->ne):?>
+                                                <foreach Catalog->where('catalog_id = ?', d()->this->id)>
+                                                    <div class="filter__subitem-box js-filter-content" data-child="smallfield_1">
+                                                        <a class="filter__subitem" href="/catalogs/{.url}">
+                                                            <div class="filter__subitem-name">{.title} <img class="js-svg-img" src="/images/icons/arrow-right-catalog.svg" alt=""></div>
+                                                        </a>
+                                                    </div> <!--./filter__subitem-box-->
+                                                </foreach>
+                                            <?endif;?>
+                                        </div> <!--./filter__item-box-->
+                                    </div> <!--/.filter__items-->
+                                </foreach>
+                            <?endif;?>
+                        </div> <!--/.filter__type box-->
+                    </foreach>
 
-                    <div class="filter__type-box js-filter-parent" data-parent="field_2">
-                        <a href="#" class="filter__type js-filter-btn" data-btn="field_2">
-                            <div class="filter__name">Вино</div>
-                            <div class="filter__arrow"><img class="js-svg-img" src="/images/icons/arrow-down-catalog.svg" alt=""></div>
-                        </a>
-                        <div class="filter__items js-filter-content" data-child="field_2">
-                            <div class="filter__item-box js-filter-parent" data-parent="smallfield_2">
-                                <div class="filter__item">
-                                    <div class="filter__item-name">Белое вино</div>
-                                    <a class="filter__item-link js-filter-btn" href="#" data-btn="smallfield_2" data-opened="свернуть" data-closed="развернуть">развернуть</a>
-                                </div>
-                            
-                                <div class="filter__subitem-box js-filter-content" data-child="smallfield_2">
-                                    <a class="filter__subitem" href="#">
-                                        <div class="filter__subitem-name">Вино белое полусладкое <img class="js-svg-img" src="/images/icons/arrow-right-catalog.svg" alt=""></div>
-                                    </a>
-                                    <a class="filter__subitem" href="#">
-                                        <div class="filter__subitem-name">Вино белое полусухое <img class="js-svg-img" src="/images/icons/arrow-right-catalog.svg" alt=""></div>
-                                    </a>
-                                    <a class="filter__subitem" href="#">
-                                        <div class="filter__subitem-name">Вино белое сладкое <img class="js-svg-img" src="/images/icons/arrow-right-catalog.svg" alt=""></div>
-                                    </a>
-                                    <a class="filter__subitem" href="#">
-                                        <div class="filter__subitem-name">Вино белое сухое <img class="js-svg-img" src="/images/icons/arrow-right-catalog.svg" alt=""></div>
-                                    </a>
-                                    
-                                </div> <!--./filter__subitem-box-->
-                            </div> <!--./filter__item-box-->
-                        </div> <!--/.filter__items-->
-                    </div> <!--/.filter__type box-->
-
-                    <div class="filter__type-box js-filter-parent" data-parent="field_3">
-                        <a href="#" class="filter__type js-filter-btn" data-btn="field_3">
-                            <div class="filter__name">Вино</div>
-                            <div class="filter__arrow"><img class="js-svg-img" src="/images/icons/arrow-down-catalog.svg" alt=""></div>
-                        </a>
-                        <div class="filter__items js-filter-content" data-child="field_3">
-                            <div class="filter__item-box js-filter-parent" data-parent="smallfield_3">
-                                <div class="filter__item">
-                                    <div class="filter__item-name">Белое вино</div>
-                                    <a class="filter__item-link js-filter-btn" href="#" data-btn="smallfield_3" data-opened="свернуть" data-closed="развернуть">развернуть</a>
-                                </div>
-                            
-                                <div class="filter__subitem-box js-filter-content" data-child="smallfield_3">
-                                    <a class="filter__subitem" href="#">
-                                        <div class="filter__subitem-name">Вино белое полусладкое <img class="js-svg-img" src="/images/icons/arrow-right-catalog.svg" alt=""></div>
-                                    </a>
-                                    <a class="filter__subitem" href="#">
-                                        <div class="filter__subitem-name">Вино белое полусухое <img class="js-svg-img" src="/images/icons/arrow-right-catalog.svg" alt=""></div>
-                                    </a>
-                                    <a class="filter__subitem" href="#">
-                                        <div class="filter__subitem-name">Вино белое сладкое <img class="js-svg-img" src="/images/icons/arrow-right-catalog.svg" alt=""></div>
-                                    </a>
-                                    <a class="filter__subitem" href="#">
-                                        <div class="filter__subitem-name">Вино белое сухое <img class="js-svg-img" src="/images/icons/arrow-right-catalog.svg" alt=""></div>
-                                    </a>
-                                    
-                                </div> <!--./filter__subitem-box-->
-                            </div> <!--./filter__item-box-->
-                        </div> <!--/.filter__items-->
-                    </div> <!--/.filter__type box-->
                 </div> <!--./filter__inner-->
 
                 <div class="popular__drink">
