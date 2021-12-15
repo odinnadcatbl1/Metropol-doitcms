@@ -150,7 +150,12 @@ h1 {
 
 .header__links {
     color: #fff;
+    display: block;
+    margin-top: 5px;
+}
 
+.header__links:first-child {
+    margin-top: 0;
 }
 
 .nav__link:first-child {
@@ -1356,6 +1361,11 @@ h1 {
     line-height: 1.25;
     color: #333333;
     text-align: start;
+}
+
+.drink__name:hover {
+    text-decoration: none;
+    color: #0099CC;
 }
 
 .drink__options {

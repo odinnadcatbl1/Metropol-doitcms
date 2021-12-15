@@ -1,0 +1,42 @@
+<?php
+	$params = d()->field_params;
+	$params_fr = array_shift($params);
+	$params_json = json_encode($params);
+	/*print_r($params);*/
+?>
+
+<div class="requred_list">
+	
+</div>
+
+
+<script>
+	
+	var params = JSON.parse('<?php echo $params_json;?>');
+	$(document).on('click', 'input[type="submit"]', function(){
+		
+		$('.requred_list').html('');
+		
+		var n_check = 0;
+		
+		$.each(params, function(index, value) {
+			
+			var req_field = $('[name="data[' + value + ']"]');
+			
+			if(req_field.val() == '' && (req_field.parents('.hiddenable_container').css('display') == 'block' || typeof req_field.parents('.hiddenable_container').css('display') === 'undefined')){
+				$('.requred_list').append('<div style="color: red;">Вы не заполнили обязательно поле "' + req_field.parents('.control-group').find('.control-label').text() + '"</div>');
+				n_check = 1;
+			}
+		});
+		
+		
+		
+		if(n_check == 1){
+			return false;
+		}
+		
+		//return false;
+		
+	})
+	
+</script>

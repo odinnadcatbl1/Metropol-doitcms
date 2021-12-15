@@ -1,0 +1,74 @@
+<link rel="stylesheet" type="text/css" href="/images/chosen/chosen.min.css" />
+<script src="/images/chosen/chosen.jquery.min.js"></script>
+<script>
+	$(document).ready(function(){
+		$('.chosen-select22').chosen({
+			<?if(isset(d()->field_params[4]) && d()->field_params[4] != ''):?>
+				max_selected_options: <?=d()->field_params[4];?>
+			<?endif;?>
+			
+		}); 
+	})
+</script>
+<div class="control-group">
+ 
+  <label class="control-label"  >{title}</label>
+  <div class="controls">
+	<?php 
+	if(count(d()->field_params)>3){
+		$_table_name = d()->field_params[3];
+	
+	}else{
+		$_table_name = ActiveRecord::one_to_plural( substr(d()->field_params[1],0,-3));
+	}
+	$_modelname=ActiveRecord::plural_to_one(strtolower($_table_name));
+	$_first_letter=strtoupper(substr($_modelname,0,1));
+	$_modelname = $_first_letter.substr($_modelname,1);
+
+	d()->list_of_rows =  new $_modelname ();
+	 
+	?>
+	<select data-placeholder="Choose a Country..."  name="{name}"  class="input-xlarge chosen-select22">
+		<option <?php 
+
+		if(!isset($_GET['$_field'])){
+			if(d()->value==0) {
+				print 'selected';
+			}
+		}else{
+			if($_GET['$_field']==0) {
+				print 'selected';
+			}
+		}
+		
+		?> value="0">Нет</option>
+	<foreach list_of_rows>
+	
+			<?php
+				$_id = d()->this->id;
+				$_title = d()->this->title;
+			?>
+			<?php 
+				if (d()->this->page_id == 0) {
+			?>
+				<option <?php 
+
+				if(!isset($_GET['$_field'])){
+					if(d()->value==$_id) {
+						print 'selected';
+					}
+				}else{
+					if($_GET['$_field']==$_id) {
+						print 'selected';
+					}
+				}
+				
+				?> value="<?php print $_id; ?>"><?php print $_title; ?></option>
+			<?php } ?>
+		
+	</foreach>
+	</select>
+	 
+  </div>
+</div>
+

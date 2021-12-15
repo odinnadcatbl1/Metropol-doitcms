@@ -48,41 +48,23 @@
 
                 </div> <!--./filter__inner-->
 
-                <div class="popular__drink">
-                    <div class="filter__title">Популярные напитки</div>
-                    <div class="drink">
-                        <div class="drink__image-box"><img class="drink__image js-svg-img" src="/images/popular-drink-1.jpg" alt=""></div>
-                        <div class="drink__describe">
-                            <div class="drink__name">Виски Bell's Original (Бэллс Ориджинал)</div>
-                            <div class="drink__options">
-                                <div class="drink__size">500 мл</div>
-                                <div class="drink__price">749 руб</div>
+                <?if(d()->Product->where('catalog_id = ? AND is_popular = 1', d()->this->id)->ne):?>               
+                    <div class="popular__drink">
+                        <div class="filter__title">Популярные напитки {.is_popular}</div>
+                        <foreach d()->Product->where('catalog_id = ? AND is_popular = 1', d()->this->id)>
+                            <div class="drink">
+                                <a href="/products/{.url}" class="drink__image-box"><img class="drink__image js-svg-img" src="{{preview d()->this->image, '60', '80'}}" alt=""></a>
+                                <div class="drink__describe">
+                                    <a href="/products/{.url}" class="drink__name">{.title}</a>                          
+                                    <div class="drink__options">
+                                        <div class="drink__size">{.capacity} мл</div>
+                                        <div class="drink__price">{.price} руб</div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="drink">
-                        <div class="drink__image-box"><img class="drink__image js-svg-img" src="/images/popular-drink-2.jpg" alt=""></div>
-                        <div class="drink__describe">
-                            <div class="drink__name">Виски Glen Eagles (Глен Иглс)</div>
-                            <div class="drink__options">
-                                <div class="drink__size">750 мл</div>
-                                <div class="drink__price">949 руб</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="drink">
-                        <div class="drink__image-box"><img class="drink__image js-svg-img" src="/images/popular-drink-3.jpg" alt=""></div>
-                        <div class="drink__describe">
-                            <div class="drink__name">Виски Famous Grouse (Фэймос Граус)</div>
-                            <div class="drink__options">
-                                <div class="drink__size">500 мл</div>
-                                <div class="drink__price">899 руб</div>
-                            </div>
-                        </div>
-                    </div>
-                </div> <!--./popular_drink-->
+                        </foreach>
+                    </div> <!--./popular_drink-->
+                <?endif;?>
 
             </div> <!--./filter-->
             

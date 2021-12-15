@@ -177,38 +177,25 @@ d()->parent_catalog = d()->Catalog->where('id = ?', d()->this->catalog_id);
                     </div> <!--/.product__describe-->
                 </div>
             </div> <!--/.row-->
-
-            <div class="tabs js-tabs">
-                <ul class="tabs__options js-tabs__options">
-                    <li class="js-tabs__option tabs__option">Описание</li>
-                    <!-- <li class="js-tabs__option tabs__option">Раздел №2</li> -->
-                </ul>
-                <div class="tabs__items js-tabs__items">
-                    <div class="tabs__item js-tabs__item">
-                        <div class="tabs__button js-tabs__button">Описание <img src="/images/icons/arrow-down-catalog.svg" alt=""></div>
-                        <div class="tabs__inner js-tabs__inner">
-                            <div class="tabs__title">{.title}</div>
-                            <div class="tabs__text">
-                                {.describe}
+            <?if(d()->this->describe != ''):?>
+                <div class="tabs js-tabs">
+                    <ul class="tabs__options js-tabs__options">
+                        <li class="js-tabs__option tabs__option">Описание</li>
+                        <!-- <li class="js-tabs__option tabs__option">Раздел №2</li> -->
+                    </ul>
+                    <div class="tabs__items js-tabs__items">
+                        <div class="tabs__item js-tabs__item">
+                            <div class="tabs__button js-tabs__button">Описание <img src="/images/icons/arrow-down-catalog.svg" alt=""></div>
+                            <div class="tabs__inner js-tabs__inner">
+                                <div class="tabs__title">{.title}</div>
+                                <div class="tabs__text">
+                                    {.describe}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- <div class="tabs__item js-tabs__item">
-                        <div class="tabs__button js-tabs__button">Отзывы <img src="/images/icons/arrow-down-catalog.svg" alt=""></div>
-                        <div class="tabs__inner js-tabs__inner">
-                            <div class="tabs__title">Виски Bushmill2</div>
-                            <div class="tabs__text">
-                                <p>По исходному сырью различают несколько видов виски:</p>
-                                <ol>
-                                    <li>солодовый — прsиготовленный из ячменного солода без каких-либо добавок;</li>
-                                    <li>зерновой — используемый для изготовления смешанного виски;</li>
-                                    <li>смешанный или купажированный — получается в результате смешивания первых двух видов напитка, это наиболее распространенный вид, который выпускают известные бренды;</li>
-                                </ol>
-                            </div>
-                        </div>
-                    </div> -->
-                </div>            
-            </div> 
+                    </div>            
+                </div> 
+            <?endif?>
         </div> <!--/.product__info-->
 
         <?

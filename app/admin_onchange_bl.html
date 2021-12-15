@@ -1,0 +1,14 @@
+<script>
+	$(function () {
+		$('.count_t').each(function(){$(this).html($(this).parent().find('.onchange_bl').val().length)});
+		$('.onchange_bl').on('change keyup',function () {
+			$(this).parent().find('.count_t').html($(this).val().length);
+		})
+	})
+</script>
+
+
+ 
+ 
+ 
+ 
