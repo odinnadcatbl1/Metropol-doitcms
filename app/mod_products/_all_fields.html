@@ -1,0 +1,47 @@
+<h5>{{add 'fields'}}{{sort_icon 'fields'}} - добавить/сортировать категорию для фильтра</h5>
+<input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Поиск">
+<table class="table table-striped table-bordered table-condensed" width="100%">
+    <thead>
+    <tr>
+        <th width="50">ID</th>
+        <th>Заголовок</th>
+        <th>Действие</th>
+    </tr>
+    </thead>
+    <tbody>
+    <foreach Field>
+        <tr>
+            <td>{.id}</td>
+            <td>{.title}</td>
+            <td>
+                <a href="/admin/edit/fields/{.id}" class="btn btn-mini">Править</a>
+                <? if(d()->this->razdel != 3) {?>
+                <a href="/admin/field_values/field_id/{.id}" class="btn btn-mini">Связанные фильтры</a>
+                <? }?>
+                <a href="/admin/delete/fields/{.id}" class="btn btn-danger btn-mini" target="_blank">
+                    <i class="icon-remove icon-white"></i>
+                </a>
+            </td>
+        </tr>
+    </foreach>
+    </tbody>
+</table>
+
+<script>
+  function myFunction() {
+    var input, filter, ul, li, a, i;
+    input = document.getElementById("mySearch");
+    filter = input.value.toUpperCase();
+    ul = document.querySelector(".table tbody");
+    li = ul.querySelectorAll("tr");
+
+    for (i = 0; i < li.length; i++) {
+      a = li[i];
+      if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        li[i].style.display = "";
+      } else {
+        li[i].style.display = "none";
+      }
+    }
+  }
+</script>

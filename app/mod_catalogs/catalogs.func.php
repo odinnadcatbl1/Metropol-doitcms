@@ -80,6 +80,39 @@ class CatalogsController
 
 		d()->products->paginate(9);
 		d()->paginator = d()->Paginator->custom_template('/app/custom_pagination.html')->generate(d()->products);
+
+
+		//не понял
+		///////////////////////////////////////
+		///////////////////////////////////////
+		d()->products = d()->Product->where('catalog_id = ?', d()->this->id);
+		d()->products_ids = d()->products->fast_all_of('id');
+		d()->prod_fields = d()->Product_field->where('product_id IN (?)', d()->products_ids);
+        d()->field_id = d()->Field->where('id IN (?)', d()->prod_fields->fast_all_of('field_id'));
+		
+		foreach ($_GET['fields'] as $v) {
+            $field = d()->Field->where('id = ?', $v);
+            if ($field->razdel == 1 || $field->razdel == 2) {
+                if (isset($_GET['field'][$field->id]) && $_GET['field'][$field->id] != '') {
+                    d()->products->where('id  IN (?)', d()->Product_field->where('field_id = ? AND field_value_id IN (?)', $field->id, $_GET['field'][$field->id])->fast_all_of('product_id'));
+                }
+            } elseif ($field->razdel == 3) {
+                d()->product_field = d()->Product_field->where('field_id = ? AND product_id IN (?)', $field->id, d()->products_ids);
+                d()->min_num = floatval(d()->product_field->order_by('value*1 asc')->limit(1)->value);
+                d()->max_num = floatval(d()->product_field->order_by('value*1 desc')->limit(1)->value);
+                $get_min = floatval($_GET['field'][$field->id]['min']);
+                $get_max = floatval($_GET['field'][$field->id]['max']);
+
+                if ($get_min != d()->min_num || $get_max != d()->max_num) {
+                    d()->products->where('id IN (?)', d()->Product_field->where('field_id = ? AND value*1 >= ? AND value*1 <= ?', $field->id, $get_min, $get_max)->fast_all_of('product_id'));
+                }
+            }
+        }
+		/////////////////////////////////////////
+		/////////////////////////////////////////
+
+
+
 		print d()->catalogs_products_show_tpl();
 	}
 

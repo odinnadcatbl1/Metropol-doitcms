@@ -31,6 +31,13 @@ d()->parent_catalog = d()->Catalog->where('id = ?', d()->this->catalog_id);
                         <div class="describe__option">{parent_catalog.title}</div>
                         <div class="describe__title">Метки:</div>
                         <div class="describe__option">Ирландия</div>
+                        <?if(iam()):?>
+                            <div class="describe__title">Редактировать характеристики:
+                                <a href="/admin/product_fields/{.id}" target="_blank" style="display: inline-block;">
+                                    <img src="/cms/internal/gfx/edit.png" alt="">
+                                </a>
+                            </div>
+                        <?endif;?>
                         <div class="describe__title">Наличие в магазинах:</div>
                         <div class="intro__btn__box--catalog">
                             <a class="intro__btn intro__btn--catalog js-modal__open" href="#">

@@ -1,0 +1,56 @@
+<h3>Значения для товара  "{.title}"</h3>
+
+{{form 'save_fields', 'ajax'=>'true', 'action'=>'/admin/ajax/save_fields'}}
+<input type="hidden" name="data[product_id]" value="{.id}">
+<foreach fields>
+    <? d()->field = d()->this;?>
+    <div>
+        <h4>{.title}<? if(d()->this->title2 != '') {?>, {.title2}<? }?></h4>
+        <input type="hidden" name="data[fields][]" value="{.id}">
+        <? if(d()->this->razdel == 1) {?>
+            <div>
+                <label class="radio" style="display: inline-block;">
+                    <input type="radio" name="data[field][{field.id}]" value="" checked>нет
+                </label>
+            </div>
+        <? }?>
+        <foreach Field_value->where('field_id = ?', d()->this->id)>
+            <? if(d()->field->razdel == 1) {?>
+                <div>
+                    <label class="radio" style="display: inline-block;">
+                        <input type="radio" name="data[field][{field.id}]" value="{.id}" <? if(isset(d()->isset_value[d()->field->id]) && d()->isset_value[d()->field->id] == d()->this->id) {?> checked <? }?>>
+                        {.title}
+                    </label>
+                </div>
+            <? }?>
+            <? if(d()->field->razdel == 2) {?>
+                <div>
+                    <label class="radio" style="display: inline-block;">
+                        <input type="checkbox" name="data[field][{field.id}][]" value="{.id}" <? if(isset(d()->isset_value[d()->field->id]) && in_array(d()->this->id, d()->isset_value[d()->field->id])) {?> checked <? }?>>
+                        {.title}
+                    </label>
+                </div>
+            <? }?>
+        </foreach>
+        <? if(d()->field->razdel == 3) {?>
+        <div class="control-group">
+            <div class="controls">
+                <input type="text" name="data[field][{field.id}]" class="input-xlarge input__num" value="<?= h(d()->isset_value[d()->field->id]);?>">
+            </div>
+        </div>
+        <? }?>
+    </div>
+</foreach>
+<button class="btn btn-primary" style="margin-top: 20px;">Сохранить</button>
+{{/form}}
+
+<script>
+    $(".input__num").keypress(function (e) {
+        if (e.which != 8 && e.which != 0 && e.which != 46 && (e.which < 48 || e.which > 57)) {
+            return !1
+        }
+        if ($(this).val().length > 10) {
+            return !1
+        }
+    });
+</script>

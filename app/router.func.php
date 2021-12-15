@@ -18,6 +18,11 @@ route('/ajax/get_shops_json', 'main', 'pages#get_shops_json');
 route('/get/appendizi', 'main', 'appendizi');
 route('/ajax/callback', 'main', 'fosv_callback');
 
+route('/admin/fields', 'products#all_fields');
+route('/admin/field_values/field_id/', 'products#field_values');
+route('/admin/product_fields/', 'products#product_fields');
+route('/admin/ajax/save_fields', 'products#save_fields');
+
 
 //route('/news/index', 'content', 'news#index');
 //route('/news/index', 'news#index');
