@@ -432,6 +432,7 @@ h1 {
 
 .intro__btn.intro__btn--catalog {
     padding: 14px 17px;
+    cursor: pointer;
 }
 .intro__btn__text {
     padding-bottom: 5px;

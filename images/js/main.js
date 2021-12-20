@@ -397,38 +397,7 @@ $(document).ready(function () {
         if ($(window).width() > 767) {
             $(".js-tabs").easyTabs();
         }
-    
-    
-        (function($){				
-            jQuery.fn.modalTabs = function(options){
-        
-                const createModalTabs = function(){
-                    modal = this;
-                    i = 0;
-                    
-                    showModalPage = function(i){
-                        $(modal).children(".js-modal__content").hide();
-                        $(modal).children(".js-modal__content").eq(i).show();
-                        $(modal).find(".js-modal__btns").children(".js-modal__tab-btn").removeClass("active");
-                        $(modal).find(".js-modal__btns").children(".js-modal__tab-btn").eq(i).addClass("active");
-                    };
-                                        
-                    showModalPage(0);				
-                    
-                    $(modal).find(".js-modal__btns").children(".js-modal__tab-btn").each(function(index, element){
-                        $(element).attr("data-page", i);
-                        i++;                        
-                    });
-                    
-                    $(modal).find(".js-modal__btns").children(".js-modal__tab-btn").click(function(){
-                        showModalPage(parseInt($(this).attr("data-page")));
-                    });				
-                };		
-                return this.each(createModalTabs);
-            }; 
-        })(jQuery);
 
-        
         $(document).on("click", ".js-tabs__button", function () {
             $(this).toggleClass("active");
             const tabsParent = $(this).parents(".js-tabs__item");
@@ -443,6 +412,37 @@ $(document).ready(function () {
         });
     }
     
+        
+    
+    (function($){				
+        jQuery.fn.modalTabs = function(options){
+    
+            const createModalTabs = function(){
+                modal = this;
+                i = 0;
+                
+                showModalPage = function(i){
+                    $(modal).children(".js-modal__content").hide();
+                    $(modal).children(".js-modal__content").eq(i).show();
+                    $(modal).find(".js-modal__btns").children(".js-modal__tab-btn").removeClass("active");
+                    $(modal).find(".js-modal__btns").children(".js-modal__tab-btn").eq(i).addClass("active");
+                };
+                                    
+                showModalPage(0);				
+                
+                $(modal).find(".js-modal__btns").children(".js-modal__tab-btn").each(function(index, element){
+                    $(element).attr("data-page", i);
+                    i++;                        
+                });
+                
+                $(modal).find(".js-modal__btns").children(".js-modal__tab-btn").click(function(){
+                    showModalPage(parseInt($(this).attr("data-page")));
+                });				
+            };		
+            return this.each(createModalTabs);
+        }; 
+    })(jQuery);  
+
 
     /*burger-menu*/
     $(document).on("click", ".js-burger", function () {

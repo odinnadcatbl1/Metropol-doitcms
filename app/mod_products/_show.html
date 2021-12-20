@@ -40,12 +40,12 @@ d()->parent_catalog = d()->Catalog->where('id = ?', d()->this->catalog_id);
                         <?endif;?>
                         <div class="describe__title">Наличие в магазинах:</div>
                         <div class="intro__btn__box--catalog">
-                            <a class="intro__btn intro__btn--catalog js-modal__open" href="#">
+                            <div class="intro__btn intro__btn--catalog js-modal__open">
                                 <div class="intro__btn__text">Адреса магазинов</div>
                                 <div class="intro__btn__icon">
                                 <img src="/images/icons/arrow-right.svg" alt="" class="arrow__right js-svg-img">
                                 </div>
-                            </a>
+                            </div>
                             <div class="modal__shops js-modal__shops">
                                 <div class="modal__shops-box">
                                     <div class="modal__close" data-izimodal-close=""><img class="js-svg-img" src="/images/icons/filter-close.svg" alt=""></div>
@@ -79,6 +79,7 @@ d()->parent_catalog = d()->Catalog->where('id = ?', d()->this->catalog_id);
                                     </div>
                                     <script>
                                             $(document).ready(function () {
+                                                
                                                 $(".js-modal__shops").iziModal({
                                                     zindex: 10000,
                                                     width: 770,
@@ -97,7 +98,7 @@ d()->parent_catalog = d()->Catalog->where('id = ?', d()->this->catalog_id);
                                                         $('body').css('overflow', 'auto');
                                                     },
                                                 });
-                                                
+    
                                                 $(document).on("click", ".js-modal__open", function () {
                                                     $('.js-modal__shops').iziModal('startLoading');
                                                     $(".js-modal__shops").iziModal("open");
