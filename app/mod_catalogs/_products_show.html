@@ -70,238 +70,181 @@
             </div> <!--./filter-->
             
             <form class="filter__form js-filter__form">
-                <div class="drink__country">
-                    <div class="filter__title">Страна происхождения</div>
 
-                    <div class="country__checkbox">
-                        <input class="country__input" type="checkbox" id="Australia" checked>
-                        <label class="country__label" for="Australia">Австралия</label>
-                    </div>
-                    <div class="country__checkbox">
-                        <input class="country__input" type="checkbox" id="Armenia">
-                        <label class="country__label" for="Armenia">Армения</label>
-                    </div>
-                    <div class="country__checkbox">
-                        <input class="country__input" type="checkbox" id="Belgium">
-                        <label class="country__label" for="Belgium">Бельгия</label>
-                    </div>
-                    <div class="country__checkbox">
-                        <input class="country__input" type="checkbox" id="UK">
-                        <label class="country__label" for="UK">Великобритания</label>
-                    </div>
-                    <div class="country__checkbox">
-                        <input class="country__input" type="checkbox" id="Abhazia">
-                        <label class="country__label" for="Abhazia">Вина Абхазии</label>
-                    </div>
-                    <div class="country__checkbox">
-                        <input class="country__input" type="checkbox" id="Crimea">
-                        <label class="country__label" for="Crimea">Вина Крыма</label>
-                    </div>
-                    <div class="country__checkbox">
-                        <input class="country__input" type="checkbox" id="Germany">
-                        <label class="country__label" for="Germany">Германия</label>
-                    </div>
-                    <div class="country__checkbox">
-                        <input class="country__input" type="checkbox" id="Greece">
-                        <label class="country__label" for="Greece">Греция</label>
-                    </div>
-                    <div class="country__checkbox">
-                        <input class="country__input" type="checkbox" id="Georgia">
-                        <label class="country__label" for="Georgia">Грузия</label>
-                    </div>
-                    <div class="country__checkbox">
-                        <input class="country__input" type="checkbox" id="Dagestan">
-                        <label class="country__label" for="Dagestan">Дагестан</label>
-                    </div>
-                    <div class="country__checkbox">
-                        <input class="country__input" type="checkbox" id="Dominican">
-                        <label class="country__label" for="Dominican">Доминикана</label>
-                    </div>
-                    <div class="country__checkbox">
-                        <input class="country__input" type="checkbox" id="Ireland">
-                        <label class="country__label" for="Ireland">Ирландия</label>
-                    </div>
-                    <div class="country__checkbox">
-                        <input class="country__input" type="checkbox" id="Spain">
-                        <label class="country__label" for="Spain">Испания</label>
-                    </div>
-                    <div class="country__checkbox">
-                        <input class="country__input" type="checkbox" id="Italy">
-                        <label class="country__label" for="Italy">Италия</label>
-                    </div>
-                    <div class="country__checkbox">
-                        <input class="country__input" type="checkbox" id="Cuba">
-                        <label class="country__label" for="Cuba">Куба</label>
-                    </div>
-                    <div class="country__checkbox">
-                        <input class="country__input" type="checkbox" id="Mexico">
-                        <label class="country__label" for="Mexico">Мексика</label>
-                    </div>
-                    <div class="country__checkbox">
-                        <input class="country__input" type="checkbox" id="Netherlands">
-                        <label class="country__label" for="Netherlands">Нидерланды</label>
-                    </div>
-                    <div class="country__checkbox">
-                        <input class="country__input" type="checkbox" id="Portugaly">
-                        <label class="country__label" for="Portugaly">Португалия</label>
-                    </div>
-                    <div class="country__checkbox">
-                        <input class="country__input" type="checkbox" id="Russia">
-                        <label class="country__label" for="Russia">Россия</label>
-                    </div>
-                    <div class="country__checkbox">
-                        <input class="country__input" type="checkbox" id="USA">
-                        <label class="country__label" for="USA">США</label>
-                    </div>
-                    <div class="country__checkbox">
-                        <input class="country__input" type="checkbox" id="Finland">
-                        <label class="country__label" for="Finland">Финляндия</label>
-                    </div>
-                    <div class="country__checkbox">
-                        <input class="country__input" type="checkbox" id="France">
-                        <label class="country__label" for="France">Франция</label>
-                    </div>
-                    <div class="country__checkbox">
-                        <input class="country__input" type="checkbox" id="Czech">
-                        <label class="country__label" for="Czech">Чехия</label>
-                    </div>
-                    <div class="country__checkbox">
-                        <input class="country__input" type="checkbox" id="Sweden">
-                        <label class="country__label" for="Sweden">Швеция</label>
-                    </div>
-                    <div class="country__checkbox">
-                        <input class="country__input" type="checkbox" id="Scotland">
-                        <label class="country__label" for="Scotland">Шотландия</label>
-                    </div>
-                </div> <!--./drink__country-->
+                <?
+                if(isset($_GET['min_price']) && $_GET['min_price'] != '' && isset($_GET['max_price']) && $_GET['max_price'] != ''){
+                    d()->price_minnum = d()->get_min_price;
+                    d()->price_maxnum = d()->get_max_price;
+                } else {
+                    d()->price_minnum = d()->price_min->price;
+                    d()->price_maxnum = d()->price_max->price;
+                }
 
-                <div class="drink__filter">
-                    <div class="filter__title">Вид</div>
-                    <div class="filter__checkbox">
-                        <input class="filter__input" id="wine" type="checkbox">
-                        <label class="filter__label" for="wine">Игристое вино</label>
-                    </div>
+                d()->price_min_pos = d()->price_min->price;
+				if(isset($_GET['min_price']) && $_GET['min_price'] != ''){
+					d()->price_min_pos = $_GET['min_price'];
+				}
+				
+				d()->price_max_pos = d()->price_max->price;
+				
+				if(isset($_GET['max_price']) && $_GET['max_price'] != ''){
+					d()->price_max_pos = $_GET['max_price'];
+				}
 
-                    <div class="filter__checkbox">
-                        <input class="filter__input" id="champagne" type="checkbox">
-                        <label class="filter__label" for="champagne">Шампанское</label>
-                    </div>
 
-                    <div class="filter__checkbox">
-                        <input class="filter__input" id="juice" type="checkbox">
-                        <label class="filter__label" for="juice">Винный напиток</label>
-                    </div>
-                </div> <!--./drink__kind-->
-
-                <div class="drink__filter">
+                ?>
+                
+                <div class="drink__filter js-filter__slider">
                     <div class="filter__title">Цена</div>
                     <div class="filter-price__slider js-filter-price__slider"></div>
                     <div class="filter-price__inputs">
                         <label class="filter-price__label">
                             <span class="filter-price-text">От</span>
-                            <input type="number" min="0" max="10000" class="filter-price__input" id="price-input-1">
+                            <input type="number" 
+                            value={price_min_pos} 
+                            data-min={price_min.price} 
+                            data-max={price_max.price} 
+                            class="filter-price__input js-input__min" 
+                            data-from="{price_min_pos}">
                             <span class="filter-price-text">₽</span>
                         </label>
                         <label class="filter-price__label">
                             <span class="filter-price-text">До</span>
-                            <input type="number" min="0" max="10000" class="filter-price__input" id="price-input-2">
+                            <input type="number"
+                            value={price_max_pos} 
+                            data-min={price_min.price} 
+                            data-max={price_max.price} 
+                            class="filter-price__input js-input__max" 
+                            data-end="{price_max_pos}">
                             <span class="filter-price-text">₽</span>
                         </label>
                     </div>
                 </div> <!--./drink__salary-->
 
-                <div class="drink__filter">
-                    <div class="filter__title">Сахар</div>
-                    <div class="filter__checkbox">
-                        <input class="filter__input" id="sugar-1" type="checkbox">
-                        <label class="filter__label" for="sugar-1">Название сахара</label>
-                    </div>
+                <? if(d()->fields->ne) {?>
 
-                    <div class="filter__checkbox">
-                        <input class="filter__input" id="sugar-2" type="checkbox">
-                        <label class="filter__label" for="sugar-2">Название сахара</label>
-                    </div>
+                    <foreach fields>
+                        <?
+                            d()->field = d()->this;
+                            d()->product_fields = d()->Product_field->where('product_id IN (?) AND field_id = ?',d()->products_ids, d()->this->id);
+                            d()->field_values = d()->Field_value->where('id IN (?)', d()->product_fields->fast_all_of('field_value_id'));
+                        ?>
+                        <? if(d()->this->razdel == 1 || d()->this->razdel == 2) {?>
+                            <? if(d()->field->type_checkbox == 1) {?>
+                                <div class="drink__country">
+                                    <div class="filter__title">{.title}</div>
+                                    <input type="hidden" name="fields[]" value="{.id}">
+                                    <foreach field_values->where('field_id = ?', d()->this->id)->order_by('title asc')>
+                                        <div class="country__checkbox">
+                                            <input class="country__input" type="checkbox" id="inp__check{.id}" name="field[{field.id}][]" value="{.id}" <? if(in_array(d()->this->id, $_GET['field'][d()->field->id])){?> checked<? }?>>
+                                            <label class="country__label" for="inp__check{.id}">{.title}</label>
+                                        </div>
+                                    </foreach>
+                                </div> <!--./drink__country-->                      
+                            <?} elseif(d()->field->type_checkbox == 2) {?>          
+                                <div class="drink__filter">
+                                    <div class="filter__title">{.title}</div>
+                                    <input type="hidden" name="fields[]" value="{.id}">
+                                    <foreach field_values->where('field_id = ?', d()->this->id)->order_by('title asc')>
+                                        <div class="filter__checkbox">
+                                            <input class="filter__input" id="inp__check{.id}" type="checkbox" name="field[{field.id}][]" value="{.id}" <? if(in_array(d()->this->id, $_GET['field'][d()->field->id])){?> checked<? }?>>
+                                            <label class="filter__label" for="inp__check{.id}">{.title}</label>
+                                        </div>
+                                    </foreach>
+                                </div> 
+                                <?} ?> 
+                        <? }?>
 
-                    <div class="filter__checkbox">
-                        <input class="filter__input" id="sugar-3" type="checkbox">
-                        <label class="filter__label" for="sugar-3">Название сахара</label>
-                    </div>
+                        <? if(d()->this->razdel == 3) {?>
+                            <?
+                                d()->product_field = d()->Product_field->where('field_id = ? AND product_id IN (?)', d()->this->id, d()->products_ids);
+                                d()->product_field_count = d()->product_field->count;
+                
+                                d()->min_num = d()->product_field->order_by('value*1 asc')->limit(1)->value;
+                                d()->min_num = explode(' - ', d()->min_num)[0];
+                                d()->min_num_pos = d()->min_num;
+                
+                                d()->max_num = d()->product_field->order_by('value*1 desc')->limit(1)->value;
+                                d()->max_num = explode(' - ', d()->max_num)[0];
+                                d()->max_num_pos = d()->max_num;
+                
+                                if(isset($_GET['field'][d()->field->id]['min']) && $_GET['field'][d()->field->id]['min'] != ''){
+                                    if($_GET['field'][d()->field->id]['min'] > d()->max_num_pos){
+                                        d()->min_num_pos = d()->max_num_pos;
+                                    }else{
+                                        d()->min_num_pos = $_GET['field'][d()->field->id]['min'];
+                                    }
+                                }
+                
+                                if(isset($_GET['field'][d()->field->id]['max']) && $_GET['field'][d()->field->id]['max'] != ''){
+                                    if($_GET['field'][d()->field->id]['max'] < d()->min_num_pos){
+                                        d()->max_num_pos = d()->min_num_pos;
+                                    }else{
+                                        d()->max_num_pos = $_GET['field'][d()->field->id]['max'];
+                                    }
+                                }
+                            ?>
+                                
+                                <div class="drink__filter js-filter__slider">
+                                    <input type="hidden" name="fields[]" value="{.id}">
+                                    <div class="filter__title">{.title}</div>
+                                    <div class="filter-price__slider js-filter-price__slider"></div>
+                                    <div class="filter-price__inputs">
+                                        <label class="filter-price__label">
+                                            <span class="filter-price-text">От</span>
+                                            <input type="number" 
+                                            name="field[{field.id}][min]"
+                                            value="{min_num_pos}"
+                                            autocomplete="off"
+                                            data-min="{min_num}"
+                                            data-from="{min_num_pos}"
+                                            data-max="{max_num}"
+                                            class="filter-price__input js-input__min" 
+                                            id="price-input-1">
+                                            <span class="filter-price-text">₽</span>
+                                        </label>
+                                        <label class="filter-price__label">
+                                            <span class="filter-price-text">До</span>
+                                            <input type="number"                                       
+                                            name="field[{field.id}][max]"
+                                            value="{max_num_pos}"
+                                            autocomplete="off"
+                                            data-min="{min_num}"
+                                            data-end="{max_num_pos}"
+                                            data-max="{max_num}"
+                                            class="filter-price__input js-input__max" 
+                                            id="price-input-2">
+                                            <span class="filter-price-text">₽</span>
+                                        </label>
+                                    </div>
+                                </div> <!--./drink__salary-->
 
-                    <div class="filter__checkbox">
-                        <input class="filter__input" id="sugar-4" type="checkbox">
-                        <label class="filter__label" for="sugar-4">Название сахара</label>
-                    </div>
+                            <? }?>
+                    </foreach>
+                <?} ?>
 
-                    <div class="filter__checkbox">
-                        <input class="filter__input" id="sugar-5" type="checkbox">
-                        <label class="filter__label" for="sugar-5">Название сахара</label>
-                    </div>
+                <?
+                    if(isset($_GET['sort']) && $_GET['sort'] != ''){
+                        d()->sort_type = $_GET['sort'];
+                    }
 
-                    <div class="filter__checkbox">
-                        <input class="filter__input" id="sugar-6" type="checkbox">
-                        <label class="filter__label" for="sugar-6">Название сахара</label>
-                    </div>
-                </div> <!--./drink__sugar-->
-
-                <div class="drink__filter">
-                    <div class="filter__title">Виноград</div>
-                    <div class="filter__checkbox">
-                        <input class="filter__input" id="grape-1" type="checkbox">
-                        <label class="filter__label" for="grape-1">Название винограда</label>
-                    </div>
-
-                    <div class="filter__checkbox">
-                        <input class="filter__input" id="grape-2" type="checkbox">
-                        <label class="filter__label" for="grape-2">Название винограда</label>
-                    </div>
-
-                    <div class="filter__checkbox">
-                        <input class="filter__input" id="grape-3" type="checkbox">
-                        <label class="filter__label" for="grape-3">Название винограда</label>
-                    </div>
-
-                    <div class="filter__checkbox">
-                        <input class="filter__input" id="grape-4" type="checkbox">
-                        <label class="filter__label" for="grape-4">Название винограда</label>
-                    </div>
-                </div> <!--./drink__grape-->
-
-                <div class="drink__filter">
-                    <div class="filter__title">Объем</div>
-                    <div class="filter__checkbox">
-                        <input class="filter__input" id="capacity-1" type="checkbox">
-                        <label class="filter__label" for="capacity-1">Объем</label>
-                    </div>
-
-                    <div class="filter__checkbox">
-                        <input class="filter__input" id="capacity-2" type="checkbox">
-                        <label class="filter__label" for="capacity-2">Объем</label>
-                    </div>
-
-                    <div class="filter__checkbox">
-                        <input class="filter__input" id="capacity-3" type="checkbox">
-                        <label class="filter__label" for="capacity-3">Объем</label>
-                    </div>
-
-                    <div class="filter__checkbox">
-                        <input class="filter__input" id="capacity-4" type="checkbox">
-                        <label class="filter__label" for="capacity-4">Объем</label>
-                    </div>
-                </div> <!--./drink__capacity-->
-
+                    if(isset($_GET['goods']) && $_GET['goods'] != ''){
+                        d()->goods_type = $_GET['goods'];
+                    }
+                    
+                ?>
+                <input class="js-catalog-input" type="hidden" value="{sort_type}" name="sort" data-input="sort" data-type_of_sort="asc">
+                <input class="js-catalog-input" type="hidden" value="{goods_type}" name="goods" data-input="goods">
                 <div class="filter__button-box">
                     <button class="filter__button">Применить</button>
                 </div>
             </form> <!--/.filter__form-->
-
-
-
         </div> <!--.col-md-3-->
 
         <div class="col-md-9 xs-order-1">
             <div class="main">
                 <div class="catalog__title--catalog">
-                    <h1><?if(d()->this->h1 != ""):?>{.h1}<? else: ?>{.title}<?endif;?> {{edit}}{{add 'products', 'catalog_id' => d()->this->id}}{{sort_icon 'products', 'catalogs_id' => d()->this->id}}</h1>
+                    <h1><?if(d()->this->h1 != ""):?>{.h1}<? else: ?>{.title}<?endif;?> {{edit}}{{add 'products', 'catalog_id' => d()->this->id}}{{sort_icon 'products', 'catalog_id' => d()->this->id}}</h1>
                 </div>
                 <?if(d()->this->describe!=''):?>
                     <div class="catalog__subtitle--catalog">
@@ -313,13 +256,12 @@
                         <div class="select__title">Сортировка:</div>                           
                         <div class="select js-select">
                             <div class="select__header">
-                                <input class="js-catalog-input" type="hidden" value="" name="sort" data-input="sort">
-                                <span class="select__current js-select__current" data-input="sort">Сначала популярные</span>
+                                <!-- <input class="js-catalog-input" type="hidden" value="" name="sort" data-input="sort" data-type_of_sort="asc"> -->
+                                <span class="select__current js-select__current" data-input="sort">Сначала дешевые</span>
                                 <div class="select__icon"><img class="js-svg-img" src="/images/icons/arrow-down-catalog.svg" alt=""></div>
                             </div>
                             <div class="select__body js-select__body">
-                                <div class="select__item js-select__item active" data-value="popular" data-input="sort">Сначала популярные</div>
-                                <div class="select__item js-select__item" data-value="chip" data-input="sort">Сначала дешёвые</div>
+                                <div class="select__item js-select__item active" data-value="chip" data-input="sort">Сначала дешёвые</div>
                                 <div class="select__item js-select__item" data-value="expensive" data-input="sort">Сначала дорогие</div>
                             </div>
                         </div>
@@ -329,7 +271,7 @@
                         <div class="select__title">Товаров на странице:</div>                           
                         <div class="select js-select">
                             <div class="select__header select__header-num">
-                                <input class="js-catalog-input" type="hidden" value="" name="goods" data-input="goods">
+                                <!-- <input class="js-catalog-input" type="hidden" value="" name="goods" data-input="goods"> -->
                                 <span class="select__current js-select__current active" data-input="goods">9</span>
                                 <div class="select__icon"><img class="js-svg-img" src="/images/icons/arrow-down-catalog.svg" alt=""></div>
                             </div>

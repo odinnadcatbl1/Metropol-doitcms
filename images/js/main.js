@@ -260,44 +260,48 @@ $(document).ready(function () {
     
     // noUiSlider (ползунок для цены)
     if ($(".js-filter-price__slider").length) {
-        const rangeSlider = document.querySelector(".js-filter-price__slider");
-        const input1 = document.querySelector("#price-input-1");
-        const input2 = document.querySelector("#price-input-2");
-        const inputs = [input1, input2];
-
-        if (rangeSlider) {
-            noUiSlider.create(rangeSlider, {
-                start: [0, 99999],
-                connect: true,
-                step: 1,
-                range: {
-                    min: 0,
-                    max: 10000,
-                },
+    
+        var rangeSliders = document.querySelectorAll(".js-filter__slider");
+        rangeSliders.forEach(el => {  
+            var rangeSlider = el.querySelector('.js-filter-price__slider');
+            var input1 = el.querySelector(".js-input__min");
+            var input2 = el.querySelector(".js-input__max");
+            var inputs = [input1, input2];
+    
+            if (rangeSlider) {
+                noUiSlider.create(rangeSlider, {
+                    start: [+input1.dataset.from, +input2.dataset.end],
+                    connect: true,
+                    step: 1,
+                    range: {
+                        min: +input1.dataset.min,
+                        max: +input2.dataset.max,
+                    },
+                });
+            }
+    
+            var setRangeSlider = (i, value) => {
+                var arr = [null, null]; // положим пустые элементы, чтобы их потом менять
+                arr[i] = value;
+                rangeSlider.noUiSlider.set(arr);
+            };
+    
+            //values - от первого ползунка до второго ползунка
+            //handle - сам ползунок
+            rangeSlider.noUiSlider.on("update", function (values, handle) {
+                if (+input1.value <= +input2.value) {
+                    inputs[handle].value = Math.round(values[handle]);
+                } 
             });
-        }
-
-        const setRangeSlider = (i, value) => {
-            let arr = [null, null]; // положим пустые элементы, чтобы их потом менять
-            arr[i] = value;
-            rangeSlider.noUiSlider.set(arr);
-        };
-
-        //values - от первого ползунка до второго ползунка
-        //handle - сам ползунок
-        rangeSlider.noUiSlider.on("update", function (values, handle) {
-            if (+input1.value <= +input2.value) {
-                inputs[handle].value = Math.round(values[handle]);
-            } 
-        });
-
-        inputs.forEach((el, index) => {
-            $(el).on("change keyup", (e) => {
-                setRangeSlider(index, e.currentTarget.value);
+    
+            inputs.forEach((el, index) => {
+                $(el).on("change keyup", (e) => {
+                    setRangeSlider(index, e.currentTarget.value);
+                });
             });
         });
-
-    }
+            
+    };
 
     // selects
 
@@ -308,11 +312,13 @@ $(document).ready(function () {
 
     $(document).on("click", ".js-select", selectToggle);
     $(document).on("click", ".js-select__item", function() {
-        $('.js-select__current[data-input="'+ $(this).data('input') +'"]').text($(this).text());
         $('.js-catalog-input[data-input="'+ $(this).data('input') +'"]').val($(this).data('value'));
+        $('.js-select__current[data-input="'+ $(this).data('input') +'"]').text($(this).text());
+        $('.js-filter__form').submit();
         let parent_body = $(this).parents('.js-select__body');
         parent_body.find(".js-select__item").removeClass("active");
         $(this).addClass("active");
+        
     });
 
 

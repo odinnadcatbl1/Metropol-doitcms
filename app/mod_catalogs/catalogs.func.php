@@ -78,17 +78,11 @@ class CatalogsController
 
 		d()->products = d()->Product->where('catalog_id = ?', d()->this->id);	
 
-		d()->products->paginate(9);
-		d()->paginator = d()->Paginator->custom_template('/app/custom_pagination.html')->generate(d()->products);
-
-
-		//не понял
-		///////////////////////////////////////
-		///////////////////////////////////////
-		d()->products = d()->Product->where('catalog_id = ?', d()->this->id);
 		d()->products_ids = d()->products->fast_all_of('id');
 		d()->prod_fields = d()->Product_field->where('product_id IN (?)', d()->products_ids);
-        d()->field_id = d()->Field->where('id IN (?)', d()->prod_fields->fast_all_of('field_id'));
+        d()->fields = d()->Field->where('id IN (?)', d()->prod_fields->fast_all_of('field_id'));
+		d()->price_min = d()->Product->where('id IN (?)', d()->products_ids)->order_by('price*1 asc')->limit(1);
+        d()->price_max = d()->Product->where('id IN (?)', d()->products_ids)->order_by('price*1 desc')->limit(1);
 		
 		foreach ($_GET['fields'] as $v) {
             $field = d()->Field->where('id = ?', $v);
@@ -108,9 +102,37 @@ class CatalogsController
                 }
             }
         }
-		/////////////////////////////////////////
-		/////////////////////////////////////////
 
+
+		if (isset($_GET['min_price']) && $_GET['min_price'] != '' && isset($_GET['max_price']) && $_GET['max_price'] != '') {
+            d()->get_min_price = $_GET['min_price'];
+            d()->get_max_price = $_GET['max_price'];
+            if (d()->get_min_price < d()->price_min->price * 1 || d()->get_min_price > d()->price_max->price * 1) {
+                d()->get_min_price = d()->price_min->price;
+            }
+            if (d()->get_max_price < d()->price_min->price * 1 || d()->get_max_price > d()->price_max->price * 1) {
+                d()->get_max_price = d()->price_max->price;
+            }
+            d()->products->where('price*1 >= ? AND price*1 <= ?', d()->get_min_price, d()->get_max_price);
+        }
+
+
+		if (isset($_GET['sort']) && $_GET['sort'] == 'chip') {
+			d()->products->order_by('price*1 asc');
+		}
+
+		if(isset($_GET['sort']) && $_GET['sort'] == 'expensive') {
+			d()->products->order_by('price*1 desc');
+		}
+
+		d()->pages = 9;
+
+		if(isset($_GET['goods'])) {
+			d()->pages = $_GET['goods']*1;
+		}
+		
+		d()->products->paginate(d()->pages);
+		d()->paginator = d()->Paginator->custom_template('/app/custom_pagination.html')->generate(d()->products);
 
 
 		print d()->catalogs_products_show_tpl();
