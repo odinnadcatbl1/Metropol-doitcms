@@ -289,11 +289,12 @@ $(document).ready(function () {
             //values - от первого ползунка до второго ползунка
             //handle - сам ползунок
             rangeSlider.noUiSlider.on("update", function (values, handle) {
-                if (+input1.value <= +input2.value) {
+                if (+input1.value <= +input2.value && +input1.value >= +input1.dataset.min) {
                     inputs[handle].value = Math.round(values[handle]);
-                } 
+                    console.log(input1.value)
+                }
             });
-    
+
             inputs.forEach((el, index) => {
                 $(el).on("change keyup", (e) => {
                     setRangeSlider(index, e.currentTarget.value);

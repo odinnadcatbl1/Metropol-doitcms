@@ -6,23 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     {Option.metateg}
-    
-    <link rel="stylesheet" href="/images/bootstrap/bootstrap.min.css">
-	<link rel="stylesheet" href="/images/noui-slider/nouislider.min.css">
-    <link rel="stylesheet" href="/images/jquery-fancybox/jquery.fancybox.min.css">
-    <link rel="stylesheet" href="/images/jquery-izimodal/iziModal.min.css">
-    <link rel="stylesheet" href="/images/swal/dist/sweetalert2.min.css">
-    <link rel="stylesheet" href="/images/css/style.css">
-    <script src="/images/jquery-ui/jquery-3.6.0.min.js"></script>
-    <script src="/images/slick/slick.min.js"></script>
-	<script src="/images/jquery-fancybox/jquery.fancybox.min.js"></script>
-    <script src="/images/jquery-izimodal/iziModal.min.js"></script>
-    <script src="https://api-maps.yandex.ru/2.1/?apikey=d957638a-51b5-4f91-beb8-50e7fc07ed08&lang=ru_RU" type="text/javascript"></script>
-    <script src="/images/jquery-match-height/dist/jquery.matchHeight-min.js"></script>
-	<script src="/images/noui-slider/nouislider.min.js"></script>
-    <script src="/images/jquery-mask-input/jquery.maskedinput.min.js"></script>
-    <script src="/images/swal/dist/sweetalert2.all.min.js.minified.js"></script>
-    <script src="/images/js/main.js"></script>
+    {{stylesheets '/images/bootstrap/bootstrap.min.css', '/images/noui-slider/nouislider.min.css', '/images/jquery-fancybox/jquery.fancybox.min.css', '/images/jquery-izimodal/iziModal.min.css', '/images/swal/dist/sweetalert2.min.css', '/images/css/style.css', 'minify'=>true, 'to'=>'/images/css/result.min.css'}}
+    {{javascripts '/images/jquery-ui/jquery-3.6.0.min.js', '/images/slick/slick.min.js', '/images/jquery-fancybox/jquery.fancybox.min.js', '/images/jquery-izimodal/iziModal.min.js', 'https://api-maps.yandex.ru/2.1/?apikey=d957638a-51b5-4f91-beb8-50e7fc07ed08&lang=ru_RU', '/images/jquery-match-height/dist/jquery.matchHeight-min.js', '/images/noui-slider/nouislider.min.js', '/images/jquery-mask-input/jquery.maskedinput.min.js', '/images/swal/dist/sweetalert2.all.min.js.minified.js', '/images/js/main.js', 'minify'=>true, 'to'=>'/images/js/result.min.js'}}
     <title>{.title}</title>
 </head>
 <body class="js-xs-body xs-body"> 

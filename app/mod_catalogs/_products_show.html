@@ -70,28 +70,14 @@
             </div> <!--./filter-->
             
             <form class="filter__form js-filter__form">
-
                 <?
-                if(isset($_GET['min_price']) && $_GET['min_price'] != '' && isset($_GET['max_price']) && $_GET['max_price'] != ''){
-                    d()->price_minnum = d()->get_min_price;
-                    d()->price_maxnum = d()->get_max_price;
-                } else {
-                    d()->price_minnum = d()->price_min->price;
-                    d()->price_maxnum = d()->price_max->price;
-                }
-
-                d()->price_min_pos = d()->price_min->price;
-				if(isset($_GET['min_price']) && $_GET['min_price'] != ''){
-					d()->price_min_pos = $_GET['min_price'];
-				}
-				
-				d()->price_max_pos = d()->price_max->price;
-				
-				if(isset($_GET['max_price']) && $_GET['max_price'] != ''){
-					d()->price_max_pos = $_GET['max_price'];
-				}
-
-
+                    if(isset($_GET['min_price']) && $_GET['min_price'] != '' && isset($_GET['max_price']) && $_GET['max_price'] != ''){
+                        d()->price_minnum = d()->get_min_price;
+                        d()->price_maxnum = d()->get_max_price;
+                    } else {
+                        d()->price_minnum = d()->price_min->price;
+                        d()->price_maxnum = d()->price_max->price;
+                    }
                 ?>
                 
                 <div class="drink__filter js-filter__slider">
@@ -100,22 +86,24 @@
                     <div class="filter-price__inputs">
                         <label class="filter-price__label">
                             <span class="filter-price-text">От</span>
-                            <input type="number" 
-                            value={price_min_pos} 
+                            <input type="number"
+                            name="min_price"
+                            value={price_minnum} 
                             data-min={price_min.price} 
                             data-max={price_max.price} 
                             class="filter-price__input js-input__min" 
-                            data-from="{price_min_pos}">
+                            data-from="{price_minnum}">
                             <span class="filter-price-text">₽</span>
                         </label>
                         <label class="filter-price__label">
                             <span class="filter-price-text">До</span>
                             <input type="number"
-                            value={price_max_pos} 
+                            name="max_price"
+                            value={price_maxnum} 
                             data-min={price_min.price} 
                             data-max={price_max.price} 
                             class="filter-price__input js-input__max" 
-                            data-end="{price_max_pos}">
+                            data-end="{price_maxnum}">
                             <span class="filter-price-text">₽</span>
                         </label>
                     </div>
@@ -201,7 +189,7 @@
                                             data-max="{max_num}"
                                             class="filter-price__input js-input__min" 
                                             id="price-input-1">
-                                            <span class="filter-price-text">₽</span>
+                                            <span class="filter-price-text">{.title2}</span>
                                         </label>
                                         <label class="filter-price__label">
                                             <span class="filter-price-text">До</span>
@@ -214,7 +202,7 @@
                                             data-max="{max_num}"
                                             class="filter-price__input js-input__max" 
                                             id="price-input-2">
-                                            <span class="filter-price-text">₽</span>
+                                            <span class="filter-price-text">{.title2}</span>
                                         </label>
                                     </div>
                                 </div> <!--./drink__salary-->
@@ -233,7 +221,7 @@
                     }
                     
                 ?>
-                <input class="js-catalog-input" type="hidden" value="{sort_type}" name="sort" data-input="sort" data-type_of_sort="asc">
+                <input class="js-catalog-input" type="hidden" value="{sort_type}" name="sort" data-input="sort" >
                 <input class="js-catalog-input" type="hidden" value="{goods_type}" name="goods" data-input="goods">
                 <div class="filter__button-box">
                     <button class="filter__button">Применить</button>
@@ -256,13 +244,12 @@
                         <div class="select__title">Сортировка:</div>                           
                         <div class="select js-select">
                             <div class="select__header">
-                                <!-- <input class="js-catalog-input" type="hidden" value="" name="sort" data-input="sort" data-type_of_sort="asc"> -->
-                                <span class="select__current js-select__current" data-input="sort">Сначала дешевые</span>
+                                <span class="select__current js-select__current" data-input="sort"><?if(isset($_GET['sort']) && $_GET['sort'] == 'expensive'):?>Сначала дорогие<?elseif((isset($_GET['sort']) && $_GET['sort'] == 'chip')):?>Сначала дешевые<?else:?>По умолчанию<?endif;?></span>
                                 <div class="select__icon"><img class="js-svg-img" src="/images/icons/arrow-down-catalog.svg" alt=""></div>
                             </div>
                             <div class="select__body js-select__body">
-                                <div class="select__item js-select__item active" data-value="chip" data-input="sort">Сначала дешёвые</div>
-                                <div class="select__item js-select__item" data-value="expensive" data-input="sort">Сначала дорогие</div>
+                                <div class="select__item js-select__item <?if($_GET['sort'] == 'chip'):?> active<?endif;?>" data-value="chip" data-input="sort">Сначала дешёвые</div>
+                                <div class="select__item js-select__item <?if($_GET['sort'] == 'expensive'):?> active<?endif;?>" data-value="expensive" data-input="sort">Сначала дорогие</div>
                             </div>
                         </div>
                     </div>
@@ -271,14 +258,13 @@
                         <div class="select__title">Товаров на странице:</div>                           
                         <div class="select js-select">
                             <div class="select__header select__header-num">
-                                <!-- <input class="js-catalog-input" type="hidden" value="" name="goods" data-input="goods"> -->
-                                <span class="select__current js-select__current active" data-input="goods">9</span>
+                                <span class="select__current js-select__current active" data-input="goods"><?if(isset($_GET['goods']) && $_GET['goods'] == '18'):?>18<?elseif((isset($_GET['sort']) && $_GET['goods'] == '27')):?>27<?else:?>9<?endif;?></span>
                                 <div class="select__icon"><img class="js-svg-img" src="/images/icons/arrow-down-catalog.svg" alt=""></div>
                             </div>
                             <div class="select__body js-select__body">
-                                <div class="select__item js-select__item active" data-value="9" data-input="goods">9</div>
-                                <div class="select__item js-select__item" data-value="18" data-input="goods">18</div>
-                                <div class="select__item js-select__item" data-value="27" data-input="goods">27</div>
+                                <div class="select__item js-select__item <?if(((empty($_GET['goods']) && ($_GET['goods'] != '18') && ($_GET['goods'] != '27')) || $_GET['goods'] == '9')):?> active<?endif;?>" data-value="9" data-input="goods">9</div>
+                                <div class="select__item js-select__item <?if($_GET['goods'] == '18'):?> active<?endif;?>" data-value="18" data-input="goods">18</div>
+                                <div class="select__item js-select__item <?if($_GET['goods'] == '27'):?> active<?endif;?>" data-value="27" data-input="goods">27</div>
                             </div>
                         </div>
                     </div>

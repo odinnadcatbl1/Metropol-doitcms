@@ -127,7 +127,7 @@ class CatalogsController
 
 		d()->pages = 9;
 
-		if(isset($_GET['goods'])) {
+		if(isset($_GET['goods']) && $_GET['goods'] != '') {
 			d()->pages = $_GET['goods']*1;
 		}
 		
