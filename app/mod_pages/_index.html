@@ -26,11 +26,6 @@
     </div>
 </div> <!-- ./intro -->
 
-<?
-//ne - not empty (Не пустой)
-//is_empty - empty (пустой)
-?>
-
 <?if(d()->Product->where('is_maincatalog = 1')->ne):?>
 <div class="catalog">
     <div class="container">
@@ -38,7 +33,7 @@
                                
             <a href="/catalogs/" class="catalog__link" >
                 <div class="catalog__name">Каталог</div>
-                <div class="catalog__num">(711)</div> 
+                <div class="catalog__num">(<?=d()->Product->where('is_maincatalog = 1')->count;?>)</div> 
                 
             </a>    
         </div> <!--./catalog-title-->
@@ -56,28 +51,61 @@
 </div> <!--./catalog-->
 <?endif;?>
 
-<foreach Catalog->where('catalog_id = 0')>
-<!--CATALOG-->
-<div class="catalog">
-    <div class="container">{{edit}}{{delete}}{{add 'products', 'catalog_id' => d()->this->id}}{{sort_icon 'products', 'catalog_id' => d()->this->id}}
-        <div class="catalog__title">
-                               
-            <a href="/catalogs/{.url}" class="catalog__link" >
-                <div class="catalog__name">{.title}</div>
-                <div class="catalog__num">(711)</div> 
-                
-            </a>    
-        </div> <!--./catalog-title-->
+<?
+$products = d()->Product->where('is_mainpage = 1');
+if ($products->ne) {
+	$product_mas = array();
+	$cats_pars = array();
+	foreach (d()->Catalog as $v) {
+		$cats_pars[$v->id] = $v->catalog_id;
+	}
+	$cat0_ids = array();
+	foreach ($products as $pr) {
+		if (!isset($cat0_ids[$pr->catalog_id])) {
+			$temp_id = $pr->catalog_id;
+			while (true) {
+				if ($cats_pars[$temp_id] == 0) {
+					break;
+				}
+				$temp_id = $cats_pars[$temp_id];
+			}
+			$cat0_ids[$pr->catalog_id] = $temp_id;
+		} else {
+			$temp_id = $cat0_ids[$pr->catalog_id];
+		}
+		if (!isset($product_mas[$temp_id])) {
+			$product_mas[$temp_id] = array();
+		}
+		$product_mas[$temp_id][] = $pr->id;
+	}
+	foreach (d()->Catalog->where('id IN (?)', $cat0_ids) as $cat) {
+		d()->products_vivod = d()->Product->where('id IN (?)', $product_mas[$cat->id]);
+		?>
+            <!--CATALOG-->
+            <div class="catalog">
+                <div class="container">{{edit}}{{delete}}{{add 'products', 'catalog_id' => d()->this->id}}{{sort_icon 'products', 'catalog_id' => d()->this->id}}
+                    <div class="catalog__title">
+                                        
+                        <a href="/catalogs/{.url}" class="catalog__link" >
+                            <div class="catalog__name"><?=$cat->title?></div>
+                            <div class="catalog__num">(<?=d()->products_vivod->count?>)</div> 
+                            
+                        </a>    
+                    </div> <!--./catalog-title-->
+            
+                    <div class="js-catalog__slider catalog__slider">
+                        <foreach products_vivod>
+                            {{one_product}}
+                        </foreach>               
+                    </div> <!--./catalog__slider-->
+                </div> <!--./container-->
+            </div> <!--./catalog-->
 
-        <div class="js-catalog__slider catalog__slider">
-         
-            <foreach Product->where('catalog_id = ?', d()->this->id)>
-                {{one_product}}
-            </foreach>               
-        </div> <!--./catalog__slider-->
-    </div> <!--./container-->
-</div> <!--./catalog-->
-</foreach>
+		<?
+	}
+	
+}
+?>
 
 <!--PROMOTIONS-->
 

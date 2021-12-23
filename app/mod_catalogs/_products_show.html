@@ -14,7 +14,7 @@
                     </div>
                     <foreach Catalog->where('catalog_id = 0')>
                         <div class="filter__type-box js-filter-parent" data-parent="field_1">
-                            <a href="/catalogs/{.url}" class="filter__type <?if(d()->Catalog->where('catalog_id = ?', d()->this->id)->ne):?> js-filter-btn<?endif;?>" data-btn="field_1">
+                            <a href="/catalogs/{.url}" class="filter__type <?if(d()->Catalog->where('catalog_id = ?', d()->this->id)->ne):?> js-filter-btn<?endif;?> <?if(in_array(d()->this->id, d()->all_catalog_ids)):?> active<?endif;?>"" data-btn="field_1">
                                 <div class="filter__name">{.title}</div>
                                 <?if(d()->Catalog->where('catalog_id = ?', d()->this->id)->ne):?>
                                     <div class="filter__arrow"><img class="js-svg-img" src="/images/icons/arrow-down-catalog.svg" alt=""></div>
@@ -22,17 +22,17 @@
                             </a>
                             <?if(d()->Catalog->where('catalog_id = ?', d()->this->id)->ne):?>
                                 <foreach Catalog->where('catalog_id = ?', d()->this->id)>
-                                    <div class="filter__items js-filter-content" data-child="field_1">
+                                    <div class="filter__items js-filter-content <?if(in_array(d()->this->id, d()->all_catalog_ids)):?> active<?endif;?>"" data-child="field_1">
                                         <div class="filter__item-box js-filter-parent" data-parent="smallfield_1">
                                             <div class="filter__item">
                                                 <a href="/catalogs/{.url}" class="filter__item-name">{.title}</a>
                                                 <?if(d()->Catalog->where('catalog_id = ?', d()->this->id)->ne):?>
-                                                    <div class="filter__item-link <?if(d()->Catalog->where('catalog_id = ?', d()->this->id)->ne):?> js-filter-btn<?endif;?>" data-btn="smallfield_1" data-opened="свернуть" data-closed="развернуть">развернуть</div>
+                                                    <div class="filter__item-link <?if(d()->Catalog->where('catalog_id = ?', d()->this->id)->ne):?> js-filter-btn<?endif;?> <?if(in_array(d()->this->id, d()->all_catalog_ids)):?> active<?endif;?>"" data-btn="smallfield_1" data-opened="свернуть" data-closed="развернуть">развернуть</div>
                                                 <?endif;?>
                                             </div>
                                             <?if(d()->Catalog->where('catalog_id = ?', d()->this->id)->ne):?>
                                                 <foreach Catalog->where('catalog_id = ?', d()->this->id)>
-                                                    <div class="filter__subitem-box js-filter-content" data-child="smallfield_1">
+                                                    <div class="filter__subitem-box js-filter-content <?if(in_array(d()->this->id, d()->all_catalog_ids)):?> active<?endif;?>"" data-child="smallfield_1">
                                                         <a class="filter__subitem" href="/catalogs/{.url}">
                                                             <div class="filter__subitem-name">{.title} <img class="js-svg-img" src="/images/icons/arrow-right-catalog.svg" alt=""></div>
                                                         </a>
@@ -80,35 +80,36 @@
                     }
                 ?>
                 
-                <div class="drink__filter js-filter__slider">
-                    <div class="filter__title">Цена</div>
-                    <div class="filter-price__slider js-filter-price__slider"></div>
-                    <div class="filter-price__inputs">
-                        <label class="filter-price__label">
-                            <span class="filter-price-text">От</span>
-                            <input type="number"
-                            name="min_price"
-                            value={price_minnum} 
-                            data-min={price_min.price} 
-                            data-max={price_max.price} 
-                            class="filter-price__input js-input__min" 
-                            data-from="{price_minnum}">
-                            <span class="filter-price-text">₽</span>
-                        </label>
-                        <label class="filter-price__label">
-                            <span class="filter-price-text">До</span>
-                            <input type="number"
-                            name="max_price"
-                            value={price_maxnum} 
-                            data-min={price_min.price} 
-                            data-max={price_max.price} 
-                            class="filter-price__input js-input__max" 
-                            data-end="{price_maxnum}">
-                            <span class="filter-price-text">₽</span>
-                        </label>
-                    </div>
-                </div> <!--./drink__salary-->
-
+                <?if(d()->products->count > 1):?>
+                    <div class="drink__filter js-filter__slider">
+                        <div class="filter__title">Цена</div>
+                        <div class="filter-price__slider js-filter-price__slider"></div>
+                        <div class="filter-price__inputs">
+                            <label class="filter-price__label">
+                                <span class="filter-price-text">От</span>
+                                <input type="number"
+                                name="min_price"
+                                value={price_minnum} 
+                                data-min={price_min.price} 
+                                data-max={price_max.price} 
+                                class="filter-price__input js-input__min" 
+                                data-from="{price_minnum}">
+                                <span class="filter-price-text">₽</span>
+                            </label>
+                            <label class="filter-price__label">
+                                <span class="filter-price-text">До</span>
+                                <input type="number"
+                                name="max_price"
+                                value={price_maxnum} 
+                                data-min={price_min.price} 
+                                data-max={price_max.price} 
+                                class="filter-price__input js-input__max" 
+                                data-end="{price_maxnum}">
+                                <span class="filter-price-text">₽</span>
+                            </label>
+                        </div>
+                    </div> <!--./drink__salary-->
+                <?endif;?>
                 <? if(d()->fields->ne) {?>
 
                     <foreach fields>

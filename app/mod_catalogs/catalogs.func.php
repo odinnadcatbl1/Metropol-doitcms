@@ -20,7 +20,6 @@ class CatalogsController
 		d()->breads = $mas;
 	}
 	
-	
 	function show($url)
 	{
 		// d()->this = d()->Catalog->find_by_url($url);
@@ -30,25 +29,28 @@ class CatalogsController
 			return d()->error('404');
 		} 
 		
-
 		d()->parent_catalog = d()->Catalog->where('id = ?', d()->this->catalog_id);
 
 		$mas = array ();
 		$mas[] = array ('title' => 'Главная', 'link' => '/');
 		$mas[] = array('title' => 'Каталог', 'link' => '/catalogs/');
-
+			
+		d()->all_catalog_ids = array();
+		d()->all_catalog_ids[] = d()->this->id;
 
 		if(d()->parent_catalog->catalog_id != 0){
-			
+
+			d()->all_catalog_ids[] = d()->parent_catalog->id;
 			$par = d()->Catalog->where('id = ?', d()->parent_catalog->catalog_id);
-			
 			$extra_mas = array();
 			
 			while($par->ne){
 				$cat_id = $par->catalog_id;
+				d()->all_catalog_ids[] = $par->id;
 				$extra_mas[] = array('title' => $par->title, 'link' => '/catalogs/' . $par->url);
 				$par = d()->Catalog->where('id = ?', $cat_id);
 			}
+
 			$narr = array_merge($mas, array_reverse($extra_mas));
 			$mas = $narr;
 		}
