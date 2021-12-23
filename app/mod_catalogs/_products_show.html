@@ -27,12 +27,12 @@
                                             <div class="filter__item">
                                                 <a href="/catalogs/{.url}" class="filter__item-name">{.title}</a>
                                                 <?if(d()->Catalog->where('catalog_id = ?', d()->this->id)->ne):?>
-                                                    <div class="filter__item-link <?if(d()->Catalog->where('catalog_id = ?', d()->this->id)->ne):?> js-filter-btn<?endif;?> <?if(in_array(d()->this->id, d()->all_catalog_ids)):?> active<?endif;?>"" data-btn="smallfield_1" data-opened="свернуть" data-closed="развернуть">развернуть</div>
+                                                    <div class="filter__item-link <?if(d()->Catalog->where('catalog_id = ?', d()->this->id)->ne):?> js-filter-btn<?endif;?> <?if(in_array(d()->this->id, d()->all_catalog_ids)):?> active<?endif;?>"" data-btn="smallfield_1" data-opened="свернуть" data-closed="развернуть"><?if(in_array(d()->this->id, d()->all_catalog_ids)):?>свернуть<?else:?>развернуть<?endif;?></div>
                                                 <?endif;?>
                                             </div>
                                             <?if(d()->Catalog->where('catalog_id = ?', d()->this->id)->ne):?>
                                                 <foreach Catalog->where('catalog_id = ?', d()->this->id)>
-                                                    <div class="filter__subitem-box js-filter-content <?if(in_array(d()->this->id, d()->all_catalog_ids)):?> active<?endif;?>"" data-child="smallfield_1">
+                                                    <div class="filter__subitem-box js-filter-content <?if(in_array(d()->this->catalog_id, d()->all_catalog_ids)):?> active<?endif;?>"" data-child="smallfield_1">
                                                         <a class="filter__subitem" href="/catalogs/{.url}">
                                                             <div class="filter__subitem-name">{.title} <img class="js-svg-img" src="/images/icons/arrow-right-catalog.svg" alt=""></div>
                                                         </a>
@@ -224,9 +224,11 @@
                 ?>
                 <input class="js-catalog-input" type="hidden" value="{sort_type}" name="sort" data-input="sort" >
                 <input class="js-catalog-input" type="hidden" value="{goods_type}" name="goods" data-input="goods">
-                <div class="filter__button-box">
-                    <button class="filter__button">Применить</button>
-                </div>
+                <?if(d()->products->count > 1):?>
+                    <div class="filter__button-box">
+                        <button class="filter__button">Применить</button>
+                    </div>
+                <?endif;?>
             </form> <!--/.filter__form-->
         </div> <!--.col-md-3-->
 
