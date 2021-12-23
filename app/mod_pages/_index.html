@@ -86,7 +86,7 @@ if ($products->ne) {
                 <div class="container">{{edit}}{{delete}}{{add 'products', 'catalog_id' => d()->this->id}}{{sort_icon 'products', 'catalog_id' => d()->this->id}}
                     <div class="catalog__title">
                                         
-                        <a href="/catalogs/{.url}" class="catalog__link" >
+                        <a href="/catalogs/<?=$cat->url?>" class="catalog__link" >
                             <div class="catalog__name"><?=$cat->title?></div>
                             <div class="catalog__num">(<?=d()->products_vivod->count?>)</div> 
                             
