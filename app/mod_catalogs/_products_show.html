@@ -68,7 +68,7 @@
                 <?endif;?>
 
             </div> <!--./filter-->
-            
+            <?if(d()->products_count > 1):?>
             <form class="filter__form js-filter__form">
                 <?
                     if(isset($_GET['min_price']) && $_GET['min_price'] != '' && isset($_GET['max_price']) && $_GET['max_price'] != ''){
@@ -224,12 +224,11 @@
                 ?>
                 <input class="js-catalog-input" type="hidden" value="{sort_type}" name="sort" data-input="sort" >
                 <input class="js-catalog-input" type="hidden" value="{goods_type}" name="goods" data-input="goods">
-                <?if(d()->products->count > 1):?>
                     <div class="filter__button-box">
                         <button class="filter__button">Применить</button>
                     </div>
-                <?endif;?>
             </form> <!--/.filter__form-->
+            <?endif;?>
         </div> <!--.col-md-3-->
 
         <div class="col-md-9 xs-order-1">

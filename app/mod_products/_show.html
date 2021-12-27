@@ -1,5 +1,6 @@
 <?
 d()->parent_catalog = d()->Catalog->where('id = ?', d()->this->catalog_id);
+d()->field_values = d()->Field_value->where('id = ?', d()->Product_field->where('product_id = ? AND field_id = 1', d()->this->id)->field_value_id);
 ?>
 <div class="container">
     {{breads}}
@@ -29,8 +30,12 @@ d()->parent_catalog = d()->Catalog->where('id = ?', d()->this->catalog_id);
                         </div>
                         <div class="describe__title">Категория:</div>
                         <div class="describe__option">{parent_catalog.title}</div>
-                        <div class="describe__title">Метки:</div>
-                        <div class="describe__option">Ирландия</div>
+                        <?if(d()->Product_field->where('product_id = ? AND field_id = 1', d()->this->id)->ne):?>
+                            <div class="describe__title">Метки:</div>
+                            <foreach field_values>
+                                <div class="describe__option">{.title}</div>
+                            </foreach>
+                        <?endif;?>
                         <?if(iam()):?>
                             <div class="describe__title">Редактировать характеристики:
                                 <a href="/admin/product_fields/{.id}" target="_blank" style="display: inline-block;">
