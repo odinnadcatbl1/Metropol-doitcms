@@ -68,7 +68,7 @@
                 <?endif;?>
 
             </div> <!--./filter-->
-            <?if(d()->products_count > 1):?>
+            <?if(d()->products_count_main > 1):?>
             <form class="filter__form js-filter__form">
                 <?
                     if(isset($_GET['min_price']) && $_GET['min_price'] != '' && isset($_GET['max_price']) && $_GET['max_price'] != ''){
@@ -80,7 +80,7 @@
                     }
                 ?>
                 
-                <?if(d()->products->count > 1):?>
+                <?if(d()->products_count_main > 1):?>
                     <div class="drink__filter js-filter__slider">
                         <div class="filter__title">Цена</div>
                         <div class="filter-price__slider js-filter-price__slider"></div>

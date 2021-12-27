@@ -77,7 +77,7 @@ class CatalogsController
 			d()->message="Страница не существует".d()->add(array('catalogs','url'=>$url));
 			return d()->error('404');
 		} 
-		d()->products_count = d()->Product->count;
+		d()->products_count_main = d()->Product->count;
 		d()->products = d()->Product->where('catalog_id = ?', d()->this->id);	
 		d()->products_count = d()->products->count;
 
