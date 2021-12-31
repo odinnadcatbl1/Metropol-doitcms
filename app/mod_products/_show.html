@@ -1,6 +1,13 @@
 <?
 d()->parent_catalog = d()->Catalog->where('id = ?', d()->this->catalog_id);
-d()->field_values = d()->Field_value->where('id = ?', d()->Product_field->where('product_id = ? AND field_id = 1', d()->this->id)->field_value_id);
+d()->this_product = d()->Product_field->where('product_id = ?', d()->this->id);
+d()->field_values = d()->Field_value->where('id = ?', d()->Product_field->where('product_id = ?', d()->this->id)->field_value_id);
+d()->onpage_fields = d()->Field->where('is_on_productpage = 1 AND id = ?', d()->field_values->field_id);
+
+d()->field_ids = d()->Product_field->where('product_id = ?', d()->this->id)->fast_all_of('field_id');
+d()->product_fields = d()->Field->where('id IN (?) AND is_on_productpage = 1', d()->field_ids);
+d()->product_id = d()->this->id;
+
 ?>
 <div class="container">
     {{breads}}
@@ -30,12 +37,15 @@ d()->field_values = d()->Field_value->where('id = ?', d()->Product_field->where(
                         </div>
                         <div class="describe__title">Категория:</div>
                         <div class="describe__option">{parent_catalog.title}</div>
-                        <?if(d()->Product_field->where('product_id = ? AND field_id = 1', d()->this->id)->ne):?>
-                            <div class="describe__title">Метки:</div>
-                            <foreach field_values>
+                        
+                        <foreach product_fields>
+                            <div class="describe__title">{.title}</div>
+                            <foreach Field_value->where('id IN (?)', d()->Product_field->where('product_id = ? AND field_id = ?', d()->product_id, d()->this->id)->fast_all_of('field_value_id'))>
                                 <div class="describe__option">{.title}</div>
                             </foreach>
-                        <?endif;?>
+                        </foreach>
+
+
                         <?if(iam()):?>
                             <div class="describe__title">Редактировать характеристики:
                                 <a href="/admin/product_fields/{.id}" target="_blank" style="display: inline-block;">

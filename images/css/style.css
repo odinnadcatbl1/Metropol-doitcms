@@ -431,6 +431,7 @@ h1 {
 
 
 .intro__btn.intro__btn--catalog {
+    margin-top: 12px;
     padding: 14px 17px;
     cursor: pointer;
 }
@@ -2009,7 +2010,6 @@ input[type="number"] {
     line-height: 1.5;
     color: #666666;
     margin-top: 25px;
-    margin-bottom: 12px;
 }
 
 .product__capacity {
@@ -2060,6 +2060,8 @@ input[type="number"] {
     border-radius: 8px;
     padding: 9px 15px 11px 15px;
     display: inline-block;
+    margin-top: 8px;
+    margin-right: 5px;
 }
 
 
